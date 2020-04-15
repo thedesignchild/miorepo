@@ -158,7 +158,7 @@ function familyFnc() {
 }
 
 function socialchallengeFnc() {
-    var welText = "*Take up a social challenge!* \nOnline challenges are trending on twitter, instagram and other places. Take part in challenges that encourage social distancing, welfare and healthy habits🤳✌"
+    var welText = "*Take up a social challenge!* \nOnline challenges are trending on twitter, instagram and other places. Take part in challenges that encourage social distancing, welfare and healthy habits 🤳✌"
     console.log("social");
     return blockGenerator_noblock(welText)
 }
