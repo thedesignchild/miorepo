@@ -342,7 +342,7 @@ function rndGenerator(max, min) {
 }
 
 function responseFnc(num) {
-    var typeResponse = ["Ayo! 🐱", "Dope! 😸", "Noice Toit 👌", "What? Really? 🐈", "Yos. Don't mind. 😹", "Gotcha! 😺", "Aye Aye! 😸", "You do know I'm a kitty right? 🙀", "Noice 👌", "Okie Dokie! 😸", "I like you hooman! 😻", "! 😻", "Arigato! 😽", "Okieee!", "Toosie Slide! 🐱‍", "It ain't easy being purr-fect 😽", "I'm a purr-ro 🐱‍👤", "What a cat-astrophe 🙀", "Stay Paw-sitive 😹", "Are you kitten' me?", "I'm feline Goooood", "Catitude is everything! 😼", "I used to previously climb meowtains 🗻", "Oh *paw*lease 🐈", "How about nahhhhh! 😼", "you are puurfect ❤"]
+    var typeResponse = ["Ayo! 🐱", "Dope! 😸", "Noice Toit 👌", "What? Really? 🐈", "Yos. Don't mind. 😹", "Gotcha! 😺", "Aye Aye! 😸", "You do know I'm a kitty right? 🙀", "Noice 👌", "Okie Dokie! 😸", "I like you hooman! 😻", "Arigato! 😽", "Okieee!", "Toosie Slide! 🐱‍", "It ain't easy being purr-fect 😽", "I'm a purr-ro 🐱‍", "What a cat-astrophe 🙀", "Stay Paw-sitive 😹", "Are you kitten' me?", "I'm feline Goooood", "Catitude is everything! 😼", "I used to previously climb meowtains 🗻", "Oh *paw*lease 🐈", "How about nahhhhh! 😼", "you are puurfect ❤"]
     return typeResponse[num];
 }
 
@@ -352,7 +352,7 @@ app.event('app_mention', async({ event, context }) => {
     console.log("This is space");
     var txt = event.text;
     var helloTxt = txt.match(/^(hello|hi|hey|hola|namaste)/);
-    var helpTxt = txt.match(/(idea|help|idea|suggest|activit|advice|new|what|random)/);
+    var helpTxt = txt.match(/(idea|help|idea|suggest|activit|advice|new|what|random|recommend)/);
     var special = txt.match(/(letter|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
     if (helloTxt != null) {
         try {
@@ -505,7 +505,7 @@ app.event('app_mention', async({ event, context }) => {
             console.log(error)
         }
     } else {
-        max = 26
+        max = 25
         min = 1
         var randNumber = rndGenerator(max, min);
         console.log(randNumber);
