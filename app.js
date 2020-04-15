@@ -352,7 +352,7 @@ app.event('app_mention', async({ event, context }) => {
     console.log("This is space");
     var txt = event.text;
     var helloTxt = txt.match(/^(hello|hi|hey|hola|namaste)/);
-    var helpTxt = txt.match(/(idea|help|idea|suggestion|activit|advice|new|what|random)/);
+    var helpTxt = txt.match(/(idea|help|idea|suggest|activit|advice|new|what|random)/);
     var special = txt.match(/(letter|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
     if (helloTxt != null) {
         try {
