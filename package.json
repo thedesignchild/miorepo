@@ -1,0 +1,15 @@
+{
+    "name": "sec-bolt-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "author": "Richard Pariath",
+    "license": "ISC",
+    "dependencies": {
+        "@slack/bolt": "^2.0.1",
+        "@slack/events-api": "^2.3.2"
+    }
+}
