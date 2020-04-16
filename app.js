@@ -351,9 +351,9 @@ app.event('app_mention', async({ event, context }) => {
     console.log(event);
     console.log("This is space");
     var txt = event.text;
-    var helloTxt = txt.match(/^(hello|hi|hey|hola|namaste)/);
-    var helpTxt = txt.match(/(idea|help|idea|suggest|activit|advice|new|what|random|recommend)/);
-    var special = txt.match(/(letter|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
+    var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
+    var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|idea|suggest|activit|advice|new|what|random|recommend)/);
+    var special = txt.toString().toLocaleLowerCase().match(/(letter|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
     if (helloTxt != null) {
         try {
             await app.client.chat.postMessage({
