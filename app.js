@@ -353,7 +353,7 @@ app.event('app_mention', async({ event, context }) => {
     var txt = event.text;
     var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
     var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|idea|suggest|activit|advice|new|what|random|recommend)/);
-    var special = txt.toString().toLocaleLowerCase().match(/(letter|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
+    var special = txt.toString().toLocaleLowerCase().match(/(letter|cook|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
     console.log(helloTxt);
     console.log(helpTxt);
     console.log(special);
@@ -390,6 +390,7 @@ app.event('app_mention', async({ event, context }) => {
                 break;
             case 'food':
             case 'recipe':
+            case 'cook':
                 messageByBot = recipeFnc();
                 break;
             case 'book':
