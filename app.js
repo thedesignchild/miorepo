@@ -342,17 +342,20 @@ function rndGenerator(max, min) {
 }
 
 function responseFnc(num) {
-    var typeResponse = ["Ayo! 🐱", "Dope! 😸", "Noice Toit 👌", "What? Really? 🐈", "Yos. Don't mind. 😹", "Gotcha! 😺", "Aye Aye! 😸", "You do know I'm a kitty right? 🙀", "Noice 👌", "Okie Dokie! 😸", "I like you hooman! 😻", "Arigato! 😽", "Okieee!", "Toosie Slide! 🐱‍", "It ain't easy being purr-fect 😽", "I'm a purr-ro 🐱‍", "What a cat-astrophe 🙀", "Stay Paw-sitive 😹", "Are you kitten' me?", "I'm feline Goooood", "Catitude is everything! 😼", "I used to previously climb meowtains 🗻", "Oh *paw*lease 🐈", "How about nahhhhh! 😼", "you are puurfect ❤"]
+    var typeResponse = ["Ayo! 🐱", "Dope! 😸", "Noice Thought 👌", "What? Really? 🐈", "Yos. Don't mind. 😹", "Gotcha! 😺", "Aye Aye! 😸", "You do know I'm a kitty right? 🙀", "Noice 👌", "Okie Dokie! 😸", "I like you hooman! 😻", "Arigato! 😽", "Okieee!", "Toosie Slide! 🐱‍", "It ain't easy being purr-fect 😽", "I'm a purr-ro 🐱‍", "What a cat-astrophe 🙀", "Stay Paw-sitive 😹", "Are you kitten' me?", "I'm feline Goooood", "Catitude is everything! 😼", "I used to previously climb meowtains 🗻", "Oh *paw*lease 🐈", "How about nahhhhh! 😼", "you are puurfect ❤"]
     return typeResponse[num];
 }
 
+app.message(':wave:', async({ message, say }) => {
+    await say(`Hello, <@${message.user}>`);
+});
 
 app.event('app_mention', async({ event, context }) => {
     console.log(event);
     console.log("This is space");
     var txt = event.text;
     var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
-    var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|idea|suggest|activit|advice|new|what|random|recommend)/);
+    var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|what|random|recommend)/);
     var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|cook|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
     console.log(helloTxt);
     console.log(helpTxt);
