@@ -350,6 +350,19 @@ app.message(':wave:', async({ message, say }) => {
     await say(`Hello, <@${message.user}>`);
 });
 
+
+app.event('app_home_opened', async({ event, context }) => {
+    console.log(event);
+    console.log("This is space");
+    try {
+        await say(`Hello, tester`);
+    } catch (error) {
+        console.log(error)
+    }
+
+
+});
+
 app.event('app_mention', async({ event, context }) => {
     console.log(event);
     console.log("This is space");
