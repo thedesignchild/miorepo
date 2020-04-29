@@ -346,21 +346,51 @@ function responseFnc(num) {
     return typeResponse[num];
 }
 
+const updateView = async(user) => {
+    let blocks = [{
+            // Section with text and a button
+            type: "section",
+            text: {
+                type: "mrkdwn",
+                text: "*Welcome!* \nThis is a home for Stickers app. You can add small notes here!"
+            },
+            accessory: {
+                type: "button",
+                action_id: "add_note",
+                text: {
+                    type: "plain_text",
+                    text: "Add a Stickie"
+                }
+            }
+        },
+        // Horizontal divider line 
+        {
+            type: "divider"
+        }
+    ];
+
+    let view = {
+        type: 'home',
+        title: {
+            type: 'plain_text',
+            text: 'Keep notes!'
+        },
+        blocks: blocks
+    }
+
+    return JSON.stringify(view);
+};
+
 app.message(':wave:', async({ message, say }) => {
     await say(`Hello, <@${message.user}>`);
 });
 
-
-app.event('app_home_opened', async({ event, context }) => {
-    console.log(event);
-    console.log("This is space");
-    try {
-        await say(`Hello, tester`);
-    } catch (error) {
-        console.log(error)
-    }
-
-
+app.event('app_home_opened', async({ event, say }) => {
+    const result = await app.client.views.publish({
+        token: context.botToken,
+        user_id: event.user,
+        view: updateView
+    });
 });
 
 app.event('app_mention', async({ event, context }) => {
