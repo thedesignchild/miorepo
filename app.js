@@ -827,7 +827,7 @@ app.event('app_home_opened', async({ payload, context }) => {
                         "type": "context",
                         "elements": [{
                             "type": "mrkdwn",
-                            "text": "I'm Mio! inFeedo's workspace pet. I help the People's team to make the workspace engaging for hoomans and help them grow to their full potential. Work and play are necessary to go together for a healthier life style. Just mention me along with keywords like *help*, *ideas*, *suggestions*, *random* and I will post an activity"
+                            "text": "I'm @mio! inFeedo's workspace pet. I assist the People's team to make the workspace engaging for hoomans and help them grow to their full potential. Work and play are necessary to go together for a healthier lifestyle. Just mention me along with keywords like *help*, *ideas*, *suggestions*, *random* and I will post an activity to cheer up your day!"
                         }]
                     },
                     {
