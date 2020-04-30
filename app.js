@@ -848,11 +848,11 @@ app.event('app_home_opened', async({ payload, context }) => {
                         }
                     },
                     {
-                        "type": "section",
-                        "text": {
+                        "type": "context",
+                        "elements": [{
                             "type": "mrkdwn",
                             "text": "You can give *suggestions, feedback or ideas* to the People's team to help make the workspace more engaging"
-                        }
+                        }]
                     },
                     {
                         "type": "actions",
@@ -885,11 +885,11 @@ app.event('app_home_opened', async({ payload, context }) => {
                         }
                     },
                     {
-                        "type": "section",
-                        "text": {
+                        "type": "context",
+                        "elements": [{
                             "type": "mrkdwn",
                             "text": "I will randomly nudge people from across the workspace and encourage them to meet (of course remotely :computer:) for *coffee* :coffee:, *lunch* 🌮, or for a *random chat* 😄"
-                        }
+                        }]
                     },
                     {
                         "type": "actions",
@@ -922,11 +922,11 @@ app.event('app_home_opened', async({ payload, context }) => {
                         }
                     },
                     {
-                        "type": "section",
-                        "text": {
+                        "type": "context",
+                        "elements": [{
                             "type": "mrkdwn",
                             "text": "Mention me as @mio in a channel or DM. I will suggest a random activity that you could do in your free time. You could also use keywords like *anime*, *books*, *joke*, *food* and many more to get specific suggestions as well"
-                        }
+                        }]
                     },
                     {
                         "type": "actions",
@@ -959,11 +959,11 @@ app.event('app_home_opened', async({ payload, context }) => {
                         }
                     },
                     {
-                        "type": "section",
-                        "text": {
+                        "type": "context",
+                        "elements": [{
                             "type": "mrkdwn",
                             "text": "Suggest new features you would like to see built in @mio"
-                        }
+                        }]
                     },
                     {
                         "type": "actions",
