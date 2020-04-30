@@ -1,18 +1,28 @@
+// REQUIREMENTS
 const { App } = require('@slack/bolt');
 
-// Initializes your app with your bot token and signing secret
+// TOKENS
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 const port = process.env.PORT || 3000;
 
+// FUNCTIONS
 
+// random response
+function responseFnc(num) {
+    var typeResponse = ["Ayo! 🐱", "Dope! 😸", "Noice Thought 👌", "What? Really? 🐈", "Yos. Don't mind. 😹", "Gotcha! 😺", "Aye Aye! 😸", "You do know I'm a kitty right? 🙀", "Noice 👌", "Okie Dokie! 😸", "I like you hooman! 😻", "Arigato! 😽", "Okieee!", "Toosie Slide! 🐱‍", "It ain't easy being purr-fect 😽", "I'm a purr-ro 🐱‍", "What a cat-astrophe 🙀", "Stay Paw-sitive 😹", "Are you kitten' me?", "I'm feline Goooood", "Catitude is everything! 😼", "I used to previously climb meowtains 🗻", "Oh *paw*lease 🐈", "How about nahhhhh! 😼", "you are puurfect ❤"]
+    return typeResponse[num];
+}
+
+// jokes
 function jokeFnc(num) {
     var joke = ["What types of cats purr the best? \n *Purrr-sians!*", "What's a cat's favorite subject in school? \n *Hisss-tory!*", "How does a cat sing scales? \n *Do-re-mew!*", "What do cats eat for breakfast? \n *Mice Krispies!*", "What do you call a pile of kittens? \n *A meowntain!*", "Why do cats always win video games? \n *Because they have nine lives!*", "How does a cat decide what it wants from the store? \n *It flips through the cat-alog!*", "What should you say to your cat when you leave the house? \n *'Have a mice day!'*", "Why can't cats play poker in the jungle? \n *Too many cheetahs!*", "Why are cats great singers? \n *Because they're very mewsical!*", "What do baby cats always wear? \n *Diapurrs!*", "What do cats love to do in the morning? \n *Read the mewspaper!*", "How do cats stop crimes? \n *They call claw enforcement!*", "What do you call a cat who lives in an igloo? \n *An eskimew!*", "What's a cat's favorite dessert? \n *Chocolate mouse!*", "What's a cat's favorite color? \n *Purr-ple!*", "What is a cat's favorite movie? \n *The Sound of Mewsic!*", "Why do cats always get their way? \n *They are very purr-suasive!*", "What do cats like to eat on a hot day? \n *A mice-cream cone!*"]
     return blockGenerator_noblock(joke[num]);
 }
 
+// letters
 function letterFnc() {
     var welText = "*Write a pawsitive letter to your future self* \nYour consciousness and thoughts are stored in them and when you read it, it’s like you are being contacted by the old you. ✍💌"
     var links = ["https://personalexcellence.co/blog/letter-to-future-self | Writing a Letter To Your Future Self", "https://www.youtube.com/watch?v=ParnV-N7OAw | How to Write a Letter to Your Future Self", "https://www.youtube.com/watch?v=1ns_QmvDbaE | Why and How to Write a Love Letter to Yourself"]
@@ -23,6 +33,7 @@ function letterFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// recipes
 function recipeFnc() {
     var welText = "*Learn a new recipe* \nFood has an amazing power to connect people (and kittens). And there’s just nothing better than being cooked something amazing. Remember the last time someone cook something delicious for you. Did you feel special? (give me some fish paw-lease) 🍜🌭"
     var links = ["https://food52.com/blog/25135-easy-coronavirus-quarantine-recipes?__cf_chl_jschl_tk__=a8ccb3c9ce63fe45dbb09881f74c0e3c95b30d1b-1586671899-0-ARL4xw9sOZLqQKCY7xasSmrJ-akCMdKnoEKIr7dLwgT1Es6vjolZ4WRmoOJSQMI3WGMpls0TEHW2IfR2jL0YuANLszZStoJiXPhpS9FnZh0I0hlYX2OG4SX7OkLSPVRVP59N_AGrio8puNtMKhTv-u7I7VLmMZjM-KtMf2eXINjtlXE2DVK4GfBu7YSTVIIvpJlbDKKxbUBa6D_QKD0rAQbGH2lpi7ua-uT_QHGX-NrZ9vjxp6aho1HOb9hcGmofMGLBLqH0Px7ZOaD7Gw0ru6EjJjSw8_vJ1aqw47FDggjNh8h9iEM8lFLsXpH8fmRCuMDZ5DzVKxqZxKgWqUZVGH4 | 13 Easy Recipes We’re Cooking in Quarantine", "https://www.goodtoknow.co.uk/food/recipe-collections/50-recipes-everyone-should-know-how-to-cook | 50 recipes everyone should know how to cook", "https://www.allrecipes.com/recipes/233/world-cuisine/asian/indian | Indian Recipes Collection"]
@@ -33,6 +44,7 @@ function recipeFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// photos
 function photosFnc() {
     var welText = "*Revist an old paw-oto album* \nWhen you see a paw-oto of yourself smiling, you often instinctively smile back, which elicits a feeling of happiness. 🤳📸"
     var links = ["https://www.findandconnectwrblog.info/2015/06/the-importance-of-photos | The importance of photos", "http://blogs.biomedcentral.com/bmcblog/2014/08/11/the-power-of-pictures-how-we-can-use-images-to-promote-and-communicate-science | The power of pictures", "https://www.thecut.com/2017/08/how-taking-photos-affects-your-memory.html | How Taking Photos Affects Your Memory of the Moment Later On"]
@@ -43,6 +55,7 @@ function photosFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// books
 function booksFnc() {
     var welText = "*Read a book that you put off.* \nReading a book can make one fur-get about their surroundings. It teaches one to focus and concentrate on one thing at a time. 📕📚"
     var links = ["http://www.gutenberg.org | Free eBooks - Project Gutenberg", "https://openlibrary.org/subjects | Open Library Collection", "http://en.childrenslibrary.org |Children's Library"]
@@ -53,6 +66,7 @@ function booksFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// cleaning
 function cleanFnc() {
     var welText = "*Clean your room, sort and rearrange imp-purr-tant stuff* \nThe act of cleaning can bring the added benefit of getting you a little extra exercise, which can be great for relieving stress. 🧹🧽"
     var links = ["https://bestlifeonline.com/cleaning-hacks/ | 27 Amazing Cleaning Tips You'll Wish You Knew Sooner", "https://www.bhg.com/homekeeping/house-cleaning/tips/quick-clean-bedroom | Deep cleaning in less than an hour", "https://www.womansday.com/home/organizing-cleaning/tips/a4055/a-quicker-way-to-clean-house-83178 | Clean Efficiently"]
@@ -63,6 +77,7 @@ function cleanFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// calling
 function callFnc() {
     var welText = "*Give a call or cat with your loved ones* \nPurr-haps one of the most crucial things we can do to help our loved ones through this trying time is to check in with them every day. 📞"
     var links = ["https://www.mindfood.com/article/top-tips-for-caring-for-our-elderly-loved-ones/ | How to care for your elderly loved ones during lockdown", "https://www.expatriatehealthcare.com/5-ways-to-keep-in-touch-with-your-loved-ones-during-the-coronavirus-lockdown/ | Keep in Touch with Your Loved Ones", "https://www.shethepeople.tv/blog/living-away-boomer-parents-lockdown| Living Away From Loved Ones Under Lockdown"]
@@ -73,6 +88,7 @@ function callFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// language
 function languageFnc() {
     var welText = "*Learn new words or a language* \nLanguage learning helps improve people's thinking skills and memory abilities. Learning a second language can develop new areas of your mind and strengthen your brain's natural ability to focus. 🧠"
     var links = ["https://www.duolingo.com/ | Duolingo", "https://www.fluentu.com/blog/fastest-way-to-learn-a-new-language/ | FluentU", "https://www.memrise.com | Learn Languages with Memrise - Spanish, French"]
@@ -83,6 +99,7 @@ function languageFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// meditation
 function meditateFnc() {
     var welText = "*Do yoga, exercise or meditation* \nPeople staying indoors could benefit from yoga which helps boost immunity. 🤸‍♀️🏋️‍♂️"
     var links = ["https://www.headspace.com | Headspace", "https://www.express.co.uk/life-style/diets/1258922/lockdown-exercise-coronavirus-the-eight-exercises-you-can-do-while-stuck-at-home | Lockdown exercise: The eight exercises you can do while stuck at home due to COVID-19", "https://yourstory.com/weekender/stay-safe-stay-fit-on-world-health-day-fitness-coronavirus | Stay safe, stay fit"]
@@ -93,6 +110,7 @@ function meditateFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// movies
 function movieFnc() {
     var welText = "*Watch some International Films* \nOne of the great rewards of watching fur-eign films is the infinite ways it can open up the world for you as a viewer. 🎥🎬"
     var links = ["https://www.youtube.com/watch?v=58Onuy5USTc | A Separation (2011)", "https://www.youtube.com/watch?v=34WIbmXkewU | The Intouchables (2011)", "https://www.youtube.com/watch?v=whldChqCsYk | The Handmaiden (2016)"]
@@ -103,12 +121,14 @@ function movieFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// resting
 function restFnc() {
     var welText = "*Just relax, rest and sleep* \nToday is your day to love yourself, rest and sleep endlessly (just like me) 💤😴🛌"
     console.log("rest");
     return blockGenerator_noblock(welText)
 }
 
+// thankyou
 function thankyouFnc() {
     var welText = "*Let's thank everyone!!. They made us what we are today* \nTo our parents, friends, children, paw-tners, doctors, nurses, garbage-man, delivery guy, neighbour, and everyone else too! (don't forget me) 🙏🤗"
     var links = ["https://ideas.hallmark.com/articles/thank-you-ideas/how-to-write-a-thank-you-note/ | How to write a thank-you note", "https://www.thespruce.com/thoughtful-wording-thank-you-note-1216778 | Thoughtful Wording for a Thank You Note", "https://examples.yourdictionary.com/examples-of-words-for-thank-you-notes.html | Examples of Words for Thank You Notes"]
@@ -119,6 +139,7 @@ function thankyouFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// re-arrange
 function re_arrangeFnc() {
 
     var welText = "*Re-arrange your fur-niture. You might feel like you shifted houses* \nYou can easily revitalize stale family rooms and bedrooms anytime by rearranging furniture to create a fresh, new look. ⚒🧱"
@@ -130,6 +151,7 @@ function re_arrangeFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// music
 function musicFnc() {
 
     var welText = "*Chill out with some dope music!* \nHere's my collection of playlist, relaxing and fur-esh music 🎷🎵"
@@ -141,6 +163,7 @@ function musicFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// skills
 function skillsFnc() {
     var welText = "*Learn a new Skill!* \nNow is a great time to get focused and learn a skill you've been wanting to learn from a long time 🎨🏓"
     var links = ["https://www.pluralsight.com/ | Pluralsight", "https://www.coursera.org/ | Coursera", "https://www.edx.org/ | edX org"]
@@ -151,18 +174,21 @@ function skillsFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// family
 function familyFnc() {
     var welText = "*It's family time!* \nLet's spend time with our loved ones, calling them, spending time with them, talking to them, playing with the kids! It's a wonderful feeling! 👪"
     console.log("family");
     return blockGenerator_noblock(welText)
 }
 
+// social challenge
 function socialchallengeFnc() {
     var welText = "*Take up a social challenge!* \nOnline challenges are trending on twitter, instagram and other places. Take part in challenges that encourage social distancing, welfare and healthy habits 🤳✌"
     console.log("social");
     return blockGenerator_noblock(welText)
 }
 
+// social service
 function socialserviceFnc() {
     var welText = "*Let's today contribute towards helping others* \nThere are many ways you can contribute towards social service, like donating, making home-made masks, food service, motivating other fighting against the virus 😷"
     var links = ["https://covid19responsefund.org/ | Covid-19 Response Fund", "https://www.youtube.com/watch?v=DtiXOSJKbjA | Making Homemade Masks", "https://www.youtube.com/watch?v=dSQztKXR6k0 | Why Fighting against the virus depends on you"]
@@ -173,6 +199,7 @@ function socialserviceFnc() {
     return blockGenerator(welText, links, thumb, context, alt_text)
 }
 
+// anime
 function animeFnc() {
     var welText = "*You should check some of these anime movies!* \nHere is a small list of some of my favourite ones.  🎌🎎"
     var links = ["https://www.youtube.com/watch?v=gaRqwKfMlKU | In This Corner of the World", "https://www.youtube.com/watch?v=xU47nhruN-Q | Kimi no na wa", "https://www.youtube.com/watch?v=nfK6UgLra7g | A Silent Voice", "https://www.youtube.com/watch?v=xnLaOqqtCKs | The Garden of Words", "https://www.youtube.com/watch?v=wdM7athAem0 | 5 Centimeters per Second", "https://www.youtube.com/watch?v=ByXuk9QqQkk | Spirited Away"]
@@ -183,6 +210,15 @@ function animeFnc() {
     return blockGenerator_moreblock(welText, links, thumb, context, alt_text)
 }
 
+function searchMember(userNumber) {
+    console.log(userNumber);
+    var allUsers = ['UD8UH97FE', 'UDBAA8X9U', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03KX1HRL', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'U4Q9T7UMU', 'U7C962QCT', 'U8FG0MWAD', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UA2NYRY49', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGYP58B6H', 'UGU8YMWAF', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
+    return allUsers[userNumber];
+}
+
+// BLOCK TYPES
+
+// when a single reply has to be given without blocks
 function blockGenerator_noblock(welText) {
     return [{
         "type": "section",
@@ -195,6 +231,7 @@ function blockGenerator_noblock(welText) {
     }]
 }
 
+// when a single reply with more than 3 blocks
 function blockGenerator_moreblock(welText, links, thumb, context, alt_text) {
     return [{
         "type": "section",
@@ -285,6 +322,8 @@ function blockGenerator_moreblock(welText, links, thumb, context, alt_text) {
     }]
 }
 
+
+// when a single reply with 3 blocks
 function blockGenerator(welText, links, thumb, context, alt_text) {
     return [{
         "type": "section",
@@ -336,63 +375,620 @@ function blockGenerator(welText, links, thumb, context, alt_text) {
     }]
 }
 
-// Returns a random number
+// RANDOM MACHINE
 function rndGenerator(max, min) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    var value = Math.floor(Math.random() * (max - min + 1) + min)
+    return value
 }
 
-function responseFnc(num) {
-    var typeResponse = ["Ayo! 🐱", "Dope! 😸", "Noice Thought 👌", "What? Really? 🐈", "Yos. Don't mind. 😹", "Gotcha! 😺", "Aye Aye! 😸", "You do know I'm a kitty right? 🙀", "Noice 👌", "Okie Dokie! 😸", "I like you hooman! 😻", "Arigato! 😽", "Okieee!", "Toosie Slide! 🐱‍", "It ain't easy being purr-fect 😽", "I'm a purr-ro 🐱‍", "What a cat-astrophe 🙀", "Stay Paw-sitive 😹", "Are you kitten' me?", "I'm feline Goooood", "Catitude is everything! 😼", "I used to previously climb meowtains 🗻", "Oh *paw*lease 🐈", "How about nahhhhh! 😼", "you are puurfect ❤"]
-    return typeResponse[num];
-}
 
-const updateView = async(user) => {
-    let blocks = [{
-            // Section with text and a button
-            type: "section",
-            text: {
-                type: "mrkdwn",
-                text: "*Welcome!* \nThis is a home for Stickers app. You can add small notes here!"
-            },
-            accessory: {
-                type: "button",
-                action_id: "add_note",
-                text: {
-                    type: "plain_text",
-                    text: "Add a Stickie"
+// EVENTS
+
+// modal view for sending ideas
+app.view('view_suggestion', async({ ack, body, view, context }) => {
+    await ack();
+    textValue = view.state.values.input_suggestion.submit_suggestion.value;
+    byUser = body.user.id;
+    try {
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: '#people-team',
+            text: `*<@${byUser}> has the following suggestion* \n` + textValue
+        });
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+app.view('view_kenshi', async({ ack, body, view, context }) => {
+    await ack();
+    textValue = view.state.values.input_kenshi.submit_kenshi.value;
+    byUser = body.user.id;
+    try {
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: '#richard-box_2',
+            text: `*<@${byUser}> has the following suggestion* \n` + textValue
+        });
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+// button listener for idea task
+app.action('new_suggestion_activity', async({ ack, body, context }) => {
+    // Acknowledge action request
+    await ack();
+    try {
+        const result = await app.client.views.open({
+            token: context.botToken,
+            // Pass a valid trigger_id within 3 seconds of receiving it
+            trigger_id: body.trigger_id,
+            // View payload
+            view: {
+                type: 'modal',
+                // View identifier
+                callback_id: 'view_suggestion',
+                title: {
+                    type: 'plain_text',
+                    text: 'Suggestions & Ideas 🎊'
+                },
+                blocks: [{
+                    type: 'input',
+                    block_id: 'input_suggestion',
+                    label: {
+                        type: 'plain_text',
+                        text: `How can we make the workspace more engaging?`
+                    },
+                    element: {
+                        type: 'plain_text_input',
+                        action_id: 'submit_suggestion',
+                        multiline: true
+                    }
+                }],
+                submit: {
+                    type: 'plain_text',
+                    text: 'Submit'
                 }
             }
-        },
-        // Horizontal divider line 
-        {
-            type: "divider"
-        }
-    ];
+        });
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+});
 
-    let view = {
-        type: 'home',
-        title: {
-            type: 'plain_text',
-            text: 'Keep notes!'
-        },
-        blocks: blocks
+// button listener for nudge people task
+app.action('nudge_people', async({ ack, body, context }) => {
+    // Acknowledge action request
+    await ack();
+    const member1 = body.user.id;
+    memberNumber = rndGenerator(0, 8)
+    member2 = searchMember(memberNumber)
+
+    while (member1 == member2) {
+        memberNumber = rndGenerator(0, 8)
+        member2 = searchMember(memberNumber)
     }
 
-    return JSON.stringify(view);
-};
+    try {
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: body.user.id,
+            text: `Awesome chance to know your teammates! <@${member2}> and you should hangout and know more about each other.`
+        });
+    } catch (error) {
+        console.log(error)
+    }
 
-app.message(':wave:', async({ message, say }) => {
-    await say(`Hello, <@${message.user}>`);
+    try {
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: member2,
+            text: `Awesome chance to know your teammates! <@${body.user.id}> and you should hangout and know more about each other.`
+        });
+    } catch (error) {
+        console.log(error)
+    }
 });
 
-app.event('app_home_opened', async({ event, say }) => {
-    const result = await app.client.views.publish({
-        token: context.botToken,
-        user_id: event.user,
-        view: updateView
-    });
+app.action('random_activity_event', async({ ack, body, context }) => {
+    // Acknowledge action request
+    await ack();
+
+    // Generate a task by random number
+    var max = 18,
+        min = 1;
+    var taskNumber = rndGenerator(max, min);
+    console.log(taskNumber)
+        // Call the function associated with that task
+    switch (taskNumber) {
+        case 1:
+            messageByBot = letterFnc();
+            break;
+        case 2:
+            messageByBot = recipeFnc();
+            break;
+        case 3:
+            messageByBot = photosFnc();
+            break;
+        case 4:
+            messageByBot = booksFnc();
+            break;
+        case 5:
+            messageByBot = cleanFnc();
+            break;
+        case 6:
+            messageByBot = callFnc();
+            break;
+        case 7:
+            messageByBot = languageFnc();
+            break;
+        case 8:
+            messageByBot = meditateFnc();
+            break;
+        case 9:
+            messageByBot = movieFnc();
+            break;
+        case 10:
+            messageByBot = restFnc();
+            break;
+        case 11:
+            messageByBot = thankyouFnc();
+            break;
+        case 12:
+            messageByBot = re_arrangeFnc();
+            break;
+        case 13:
+            messageByBot = musicFnc();
+            break;
+        case 14:
+            messageByBot = skillsFnc();
+            break;
+        case 15:
+            messageByBot = familyFnc();
+            break;
+        case 16:
+            messageByBot = socialchallengeFnc();
+            break;
+        case 17:
+            messageByBot = socialserviceFnc();
+            break;
+        case 18:
+            messageByBot = animeFnc();
+            break;
+        default:
+            messageByBot = socialserviceFnc();
+            break;
+
+    }
+
+    try {
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: body.user.id,
+            blocks: messageByBot
+        });
+    } catch (error) {
+        console.log(error)
+    }
+
 });
 
+// button listener for idea task
+app.action('kenshi_activity', async({ ack, body, context }) => {
+    // Acknowledge action request
+    await ack();
+    try {
+        const result = await app.client.views.open({
+            token: context.botToken,
+            // Pass a valid trigger_id within 3 seconds of receiving it
+            trigger_id: body.trigger_id,
+            // View payload
+            view: {
+                type: 'modal',
+                // View identifier
+                callback_id: 'view_kenshi',
+                title: {
+                    type: 'plain_text',
+                    text: 'Feature Request 👀'
+                },
+                blocks: [{
+                    type: 'input',
+                    block_id: 'input_kenshi',
+                    label: {
+                        type: 'plain_text',
+                        text: `What new features would you like in Mio?`
+                    },
+                    element: {
+                        type: 'plain_text_input',
+                        action_id: 'submit_kenshi',
+                        multiline: true
+                    }
+                }],
+                submit: {
+                    type: 'plain_text',
+                    text: 'Submit'
+                }
+            }
+        });
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+
+// personal message
+app.message('@U011Q5X2A77', async({ message, context }) => {
+    var txt = message.text;
+    var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
+    var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|what|random|recommend)/);
+    var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|cook|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
+
+    if (helloTxt != null) {
+        try {
+            await app.client.chat.postMessage({
+                token: context.botToken,
+                channel: message.user,
+                blocks: [{
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": helloTxt[0] + " :wave:"
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "I help in suggesting activities or tasks you can do in your free time, keeping you positive and motivated. Just mention me along with keywords like *help*, *ideas*, *suggestions*, *random* and I will post an activity"
+                        }
+                    }
+                ]
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    } else if (special != null) {
+        var requestCase = special[0];
+        switch (requestCase) {
+            case 'letter':
+                messageByBot = letterFnc();
+                break;
+            case 'food':
+            case 'recipe':
+            case 'cook':
+            case 'cuisine':
+            case 'lunch':
+            case 'dinner':
+            case 'breakfast':
+                messageByBot = recipeFnc();
+                break;
+            case 'book':
+            case 'books':
+                messageByBot = booksFnc();
+                break;
+            case 'language':
+                messageByBot = languageFnc();
+                break;
+            case 'movie':
+            case 'netflix':
+                messageByBot = movieFnc();
+                break;
+            case 'music':
+                messageByBot = musicFnc();
+                break;
+            case 'skills':
+                messageByBot = skillsFnc();
+                break;
+            case 'social':
+                messageByBot = socialserviceFnc();
+                break;
+            case 'anime':
+                messageByBot = animeFnc();
+                break;
+            case 'joke':
+                var max = 19,
+                    min = 0;
+                var jokeNumber = rndGenerator(max, min);
+                messageByBot = jokeFnc(jokeNumber);
+                break;
+        }
+
+
+        try {
+            await app.client.chat.postMessage({
+                token: context.botToken,
+                channel: message.user,
+                blocks: messageByBot
+            });
+        } catch (error) {
+            console.log(error)
+        }
+
+    } else if (helpTxt != null) {
+        // Generate a task by random number
+        var max = 18,
+            min = 1;
+        var taskNumber = rndGenerator(max, min);
+
+        // Call the function associated with that task
+        switch (taskNumber) {
+            case 1:
+                messageByBot = letterFnc();
+                break;
+            case 2:
+                messageByBot = recipeFnc();
+                break;
+            case 3:
+                messageByBot = photosFnc();
+                break;
+            case 4:
+                messageByBot = booksFnc();
+                break;
+            case 5:
+                messageByBot = cleanFnc();
+                break;
+            case 6:
+                messageByBot = callFnc();
+                break;
+            case 7:
+                messageByBot = languageFnc();
+                break;
+            case 8:
+                messageByBot = meditateFnc();
+                break;
+            case 9:
+                messageByBot = movieFnc();
+                break;
+            case 10:
+                messageByBot = restFnc();
+                break;
+            case 11:
+                messageByBot = thankyouFnc();
+                break;
+            case 12:
+                messageByBot = re_arrangeFnc();
+                break;
+            case 13:
+                messageByBot = musicFnc();
+                break;
+            case 14:
+                messageByBot = skillsFnc();
+                break;
+            case 15:
+                messageByBot = familyFnc();
+                break;
+            case 16:
+                messageByBot = socialchallengeFnc();
+                break;
+            case 17:
+                messageByBot = socialserviceFnc();
+                break;
+            case 18:
+                messageByBot = animeFnc();
+                break;
+            default:
+                messageByBot = animeFnc();
+                break;
+        }
+
+        try {
+            await app.client.chat.postMessage({
+                token: context.botToken,
+                channel: message.user,
+                blocks: messageByBot
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        max = 24
+        min = 0
+        var randNumber = rndGenerator(max, min);
+        console.log(randNumber);
+        var randomText = responseFnc(randNumber)
+        console.log(randomText);
+        try {
+            await app.client.chat.postMessage({
+                token: context.botToken,
+                channel: message.user,
+                text: randomText
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+});
+
+// listener if the user has clicked on the home tab
+app.event('app_home_opened', async({ payload, context }) => {
+    console.log(payload);
+    const userId = payload.user;
+
+    try {
+        // Call the views.publish method using the built-in WebClient
+        const result = await app.client.views.publish({
+            // The token you used to initialize your app is stored in the `context` object
+            token: context.botToken,
+            user_id: userId,
+            view: {
+                "type": "home",
+                "blocks": [{
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": `*Meow, <@${  userId  }> :smile_cat:*`
+                        }
+                    },
+                    {
+                        "type": "context",
+                        "elements": [{
+                            "type": "mrkdwn",
+                            "text": "I'm Mio! inFeedo's workspace pet. I help the People's team to make the workspace engaging for hoomans and help them grow to their full potential. Work and play are necessary to go together for a healthier life style. Just mention me along with keywords like *help*, *ideas*, *suggestions*, *random* and I will post an activity"
+                        }]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": " "
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*New Suggestions and Ideas? 😻*"
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "You can give *suggestions, feedback or ideas* to the People's team to help make the workspace more engaging"
+                        }
+                    },
+                    {
+                        "type": "actions",
+                        "elements": [{
+                            "type": "button",
+                            "action_id": "new_suggestion_activity",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "✍  Share Ideas",
+                                "emoji": true
+                            },
+                            "value": "suggestions"
+                        }]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": " "
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*Let's Hangout! 🐈*"
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "I will randomly nudge people from across the workspace and encourage them to meet (of course remotely :computer:) for *coffee* :coffee:, *lunch* 🌮, or for a *random chat* 😄"
+                        }
+                    },
+                    {
+                        "type": "actions",
+                        "elements": [{
+                            "type": "button",
+                            "action_id": "nudge_people",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "👉  Nudge Someone",
+                                "emoji": true
+                            },
+                            "value": "people"
+                        }]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": " "
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*Activity for free time 😺 *"
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "Mention me as @mio in a channel or DM. I will suggest a random activity that you could do in your free time. You could also use keywords like *anime*, *books*, *joke*, *food* and many more to get specific suggestions as well"
+                        }
+                    },
+                    {
+                        "type": "actions",
+                        "elements": [{
+                            "type": "button",
+                            "action_id": "random_activity_event",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "🎉  Random Activity",
+                                "emoji": true
+                            },
+                            "value": "random"
+                        }]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": " "
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*Feature Suggestion 🙀*"
+                        }
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "Suggest new features you would like to see built in @mio"
+                        }
+                    },
+                    {
+                        "type": "actions",
+                        "elements": [{
+                            "type": "button",
+                            "action_id": "kenshi_activity",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "🙌  Suggest New Feature",
+                                "emoji": true
+                            },
+                            "value": "random"
+                        }]
+                    }
+                ]
+            }
+        });
+
+        console.log(result);
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+// respond in channels where the app is mentioned
 app.event('app_mention', async({ event, context }) => {
     console.log(event);
     console.log("This is space");
@@ -468,7 +1064,7 @@ app.event('app_mention', async({ event, context }) => {
                 break;
             case 'joke':
                 var max = 19,
-                    min = 1;
+                    min = 0;
                 var jokeNumber = rndGenerator(max, min);
                 messageByBot = jokeFnc(jokeNumber);
                 break;
@@ -560,8 +1156,8 @@ app.event('app_mention', async({ event, context }) => {
             console.log(error)
         }
     } else {
-        max = 25
-        min = 1
+        max = 24
+        min = 0
         var randNumber = rndGenerator(max, min);
         console.log(randNumber);
         var randomText = responseFnc(randNumber)
@@ -579,6 +1175,8 @@ app.event('app_mention', async({ event, context }) => {
 
 });
 
+
+// MACHINE STARTER
 
 (async() => {
     // Start your app
