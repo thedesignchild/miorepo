@@ -918,7 +918,7 @@ app.event('app_home_opened', async({ payload, context }) => {
                         "type": "section",
                         "text": {
                             "type": "mrkdwn",
-                            "text": "*Activity for free time 😺 *"
+                            "text": "*Activity in free time 😺 *"
                         }
                     },
                     {
