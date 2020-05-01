@@ -27,7 +27,7 @@ function letterFnc() {
     var welText = "*Write a pawsitive letter to your future self* \nYour consciousness and thoughts are stored in them and when you read it, it’s like you are being contacted by the old you. ✍💌"
     var links = ["https://personalexcellence.co/blog/letter-to-future-self | Writing a Letter To Your Future Self", "https://www.youtube.com/watch?v=ParnV-N7OAw | How to Write a Letter to Your Future Self", "https://www.youtube.com/watch?v=1ns_QmvDbaE | Why and How to Write a Love Letter to Yourself"]
     var thumb = ["https://personalexcellence.co/files/letter2.jpg", "https://img.youtube.com/vi/ParnV-N7OAw/maxresdefault.jpg", "https://img.youtube.com/vi/1ns_QmvDbaE/maxresdefault.jpg"]
-    var context = ["Imagine writing to your future self 5 years from now — what would you say? What kind of person would you be? What goals...", "This video is about writing a letter to your future self. This exercise will help you to set goals...", "I talk about one of the most imp-purr-tant self-love strategies - to write a love letter to yourself. It is the most concrete..."];
+    var context = ["_Imagine writing to your future self 5 years from now — what would you say? What kind of person would you be? What goals..._", "This video is about writing a letter to your future self. This exercise will help you to set goals...", "I talk about one of the most imp-purr-tant self-love strategies - to write a love letter to yourself. It is the most concrete..."];
     var alt_text = ["Writing Letter", "Youtube Video to Write Letter", "Youtube Video to Write Letter"]
     console.log("letter");
     return blockGenerator(welText, links, thumb, context, alt_text)
