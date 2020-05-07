@@ -620,7 +620,7 @@ app.action('kenshi_activity', async({ ack, body, context }) => {
 
 
 // personal message
-app.message('@U011Q5X2A77', async({ message, context }) => {
+app.message(async({ message, context }) => {
     var txt = message.text;
     var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
     var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|what|random|recommend)/);
