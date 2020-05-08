@@ -8,12 +8,24 @@ var expapp = express();
 const { google } = require('googleapis');
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'token.json';
+const bodyParser = require('body-parser')
+expapp.use(bodyParser.urlencoded({ extended: true }))
+expapp.use(bodyParser.json())
+
 // TOKENS
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 const port = process.env.PORT || 3000;
+
+expapp.use('/slack/events', (async() => {
+    // Start your app
+    const server = await app.start(port);
+
+    console.log('⚡️ Bolt app is running!');
+}))
+
 
 expapp.get("/", function(req, res) {
     res.send("welcome to NodeJS app on kenshi")
@@ -1287,7 +1299,8 @@ app.event('app_mention', async({ event, context }) => {
 
 (async() => {
     // Start your app
-    const server = await app.start(port);
-
-    console.log('⚡️ Bolt app is running!');
+    expapp.listen(port, function() {
+        console.log('⚡️ Bolt app is running!' + port)
+    })
+    console.log();
 })();
