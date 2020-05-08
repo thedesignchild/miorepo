@@ -715,7 +715,7 @@ app.action('kenshi_activity', async({ ack, body, context }) => {
                     block_id: 'input_kenshi',
                     label: {
                         type: 'plain_text',
-                        text: `What new features would you like in Mio?`
+                        text: `What new features would you like in @mio?`
                     },
                     element: {
                         type: 'plain_text_input',
