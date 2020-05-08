@@ -22,7 +22,7 @@ const port = process.env.PORT || 3000;
 expapp.use('/slack/events', (async() => {
     // Start your app
     const server = await app.start(port);
-
+    res.send("working")
     console.log('⚡️ Bolt app is running!');
 }))
 
