@@ -1,79 +1,27 @@
 // REQUIREMENTS
 const { App } = require('@slack/bolt');
+const open = require('open');
+const fs = require('fs');
+const readline = require('readline');
+var express = require('express');
+var expapp = express();
 const { google } = require('googleapis');
-const calendar = google.calendar('v3');
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'token.json';
-
 // TOKENS
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 const port = process.env.PORT || 3000;
+const portEXP = process.env.PORT || 4500;
 
-// FUNCTIONS
-
-fs.readFile('credentials.json', (err, content) => {
-    if (err) return console.log('Error loading client secret file:', err);
-    // Authorize a client with credentials, then call the Google Calendar API.
-    authorize(JSON.parse(content), listEvents);
+expapp.get("/", function(req, res) {
+    res.send("welcome to NodeJS app on kenshi")
 });
 
-function authorize(credentials, callback) {
-    const { client_secret, client_id, redirect_uris } = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(
-        client_id, client_secret, redirect_uris[0]);
-
-    // Check if we have previously stored a token.
-    fs.readFile(TOKEN_PATH, (err, token) => {
-        if (err) return getAccessToken(oAuth2Client, callback);
-        oAuth2Client.setCredentials(JSON.parse(token));
-        callback(oAuth2Client);
-    });
-}
-
-function getAccessToken(oAuth2Client, callback) {
-    const authUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: SCOPES,
-    });
-    console.log('Authorize this app by visiting this url:', authUrl);
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
-    rl.question('Enter the code from that page here: ', (code) => {
-        rl.close();
-        oAuth2Client.getToken(code, (err, token) => {
-            if (err) return console.error('Error retrieving access token', err);
-            oAuth2Client.setCredentials(token);
-            // Store the token to disk for later program executions
-            fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-                if (err) return console.error(err);
-                console.log('Token stored to', TOKEN_PATH);
-            });
-            callback(oAuth2Client);
-        });
-    });
-}
-
-function listEvents(auth) {
-    const calendar = google.calendar({ version: 'v3', auth });
-    calendar.freebusy.query({
-        "timeMin": datetime,
-        "timeMax": datetime,
-        "timeZone": string,
-        "groupExpansionMax": integer,
-        "calendarExpansionMax": integer,
-        "items": [{
-            "id": string
-        }]
-    }, (err, res) => {
-        if (err) return console.log('The API returned an error: ' + err);
-        console.log(res);
-    });
-}
+expapp.listen(portEXP);
+// FUNCTIONS
 
 // random response
 function responseFnc(num) {
@@ -442,7 +390,7 @@ function blockGenerator(welText, links, thumb, context, alt_text) {
 
 // RANDOM MACHINE
 function rndGenerator(max, min) {
-    var value = Math.floor(Math.random() * (max - min + 1) + min)
+    var value = Math.floor(Math.random() * (Math.random() * (max - min + 1) + min))
     return value
 }
 
@@ -540,22 +488,115 @@ app.action('nudge_people', async({ ack, body, context }) => {
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: body.user.id,
-            text: `Awesome chance to know your teammates! <@${member2}> and you should hangout and know more about each other.`
+            blocks: [{
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": `Awesome chance to know your teammates! I suggest <@${member2}> and you should have a virtual hangout and get to know each other! Should I schedule a time then?`
+                    }
+                },
+                {
+                    "type": "actions",
+                    "elements": [{
+                        "type": "button",
+                        "action_id": "schedule_hangout",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "📅  Schedule Hangout",
+                            "emoji": true
+                        },
+                        "value": "hangout"
+                    }]
+                }
+            ]
         });
     } catch (error) {
         console.log(error)
     }
 
+});
+
+app.action('schedule_hangout', async({ ack, body, context }) => {
+    // Acknowledge action request
+    await ack();
     try {
-        await app.client.chat.postMessage({
-            token: context.botToken,
-            channel: member2,
-            text: `Awesome chance to know your teammates! <@${body.user.id}> and you should hangout and know more about each other.`
+
+        // Load client secrets from a local file.
+        fs.readFile('credentials.json', (err, content) => {
+            if (err) return console.log('Error loading client secret file:', err);
+            // Authorize a client with credentials, then call the Google Calendar API.
+            authorize(JSON.parse(content), listEvents);
         });
+
+        function authorize(credentials, callback) {
+            // const { client_secret, client_id, redirect_uris } = credentials.installed;
+            const client_id = "1009663247373-9ia3ra895brihit6e4e1llbv18s2m7v8.apps.googleusercontent.com";
+            const client_secret = "42rB8lRUGkK7JKGDE2p6zP7y";
+            redirect_uris = ["https://calendar.google.com/calendar"];
+            const oAuth2Client = new google.auth.OAuth2(
+                client_id, client_secret, redirect_uris[0]);
+
+            // Check if we have previously stored a token.
+            fs.readFile(TOKEN_PATH, (err, token) => {
+                if (err) return getAccessToken(oAuth2Client, callback);
+                oAuth2Client.setCredentials(JSON.parse(token));
+                callback(oAuth2Client);
+            });
+        }
+
+        function getAccessToken(oAuth2Client, callback) {
+            const authUrl = oAuth2Client.generateAuthUrl({
+                access_type: 'offline',
+                scope: SCOPES,
+            });
+            open(authUrl);
+            // const rl = readline.createInterface({
+            //     input: process.stdin,
+            //     output: process.stdout,
+            // });
+            // rl.question('Enter the code from that page here: ', (code) => {
+            //     rl.close();
+            oAuth2Client.getToken(code, (err, token) => {
+                if (err) return console.error('Error retrieving access token', err);
+                oAuth2Client.setCredentials(token);
+                // Store the token to disk for later program executions
+                fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+                    if (err) return console.error(err);
+                    console.log('Token stored to', TOKEN_PATH);
+                });
+                callback(oAuth2Client);
+            });
+            // });
+        }
+
+        function listEvents(auth) {
+            const calendar = google.calendar({ version: 'v3', auth });
+            calendar.events.list({
+                calendarId: 'richardjoseph@infeedo.com',
+                timeMin: (new Date()).toISOString(),
+                maxResults: 10,
+                singleEvents: true,
+                orderBy: 'startTime',
+            }, (err, res) => {
+                if (err) return console.log('The API returned an error: ' + err);
+                const events = res.data.items;
+                if (events.length) {
+                    console.log('Upcoming 10 events:');
+                    events.map((event, i) => {
+                        const start = event.start.dateTime || event.start.date;
+                        console.log(`${start} - ${event.summary}`);
+                    });
+                } else {
+                    console.log('No upcoming events found.');
+                }
+            });
+        }
+
     } catch (error) {
-        console.log(error)
+        console.error(error);
     }
 });
+
 
 app.action('random_activity_event', async({ ack, body, context }) => {
     // Acknowledge action request
