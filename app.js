@@ -14,13 +14,12 @@ const app = new App({
     signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 const port = process.env.PORT || 3000;
-const portEXP = process.env.PORT || 4500;
 
 expapp.get("/", function(req, res) {
     res.send("welcome to NodeJS app on kenshi")
 });
 
-expapp.listen(portEXP);
+expapp.listen(port);
 // FUNCTIONS
 
 // random response
