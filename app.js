@@ -19,7 +19,7 @@ expapp.get("/", function(req, res) {
     res.send("welcome to NodeJS app on kenshi")
 });
 
-expapp.listen(port);
+// expapp.listen(port);
 // FUNCTIONS
 
 // random response
