@@ -479,10 +479,12 @@ app.action('nudge_people', async({ ack, body, context }) => {
             // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
             return_im: true,
+            user: member1,
+            member2,
             // The name of the conversation
             // Add the user who clicked the message action into the new channel 
-            user: member2,
-            member1
+            users: member1,
+            member2
         });
         console.log("this is result");
         console.log(result)
