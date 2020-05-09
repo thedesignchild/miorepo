@@ -669,7 +669,7 @@ app.action('kenshi_activity', async({ ack, body, context }) => {
                 }
             }
         });
-        console.log(result);
+        // console.log(result);
     } catch (error) {
         console.error(error);
     }
@@ -845,9 +845,7 @@ app.message(async({ message, context }) => {
         max = 24
         min = 0
         var randNumber = rndGenerator(max, min);
-        console.log(randNumber);
         var randomText = responseFnc(randNumber)
-        console.log(randomText);
         try {
             await app.client.chat.postMessage({
                 token: context.botToken,
@@ -863,9 +861,7 @@ app.message(async({ message, context }) => {
 
 // listener if the user has clicked on the home tab
 app.event('app_home_opened', async({ payload, context }) => {
-    console.log(payload);
     const userId = payload.user;
-
     try {
         // Call the views.publish method using the built-in WebClient
         const result = await app.client.views.publish({
@@ -1040,7 +1036,7 @@ app.event('app_home_opened', async({ payload, context }) => {
             }
         });
 
-        console.log(result);
+        // console.log(result);
     } catch (error) {
         console.log(error)
     }
@@ -1048,16 +1044,15 @@ app.event('app_home_opened', async({ payload, context }) => {
 
 // respond in channels where the app is mentioned
 app.event('app_mention', async({ event, context }) => {
-    console.log(event);
+    // console.log(event);
     console.log("This is space");
     var txt = event.text;
     var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
     var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|cook|food|tv|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
     var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|what|random|recommend)/);
-    console.log(helloTxt);
-    console.log(helpTxt);
-    console.log(special);
-    console.log(event);
+    // console.log(helloTxt);
+    // console.log(helpTxt);
+    // console.log(special);
     if (helloTxt != null) {
         try {
             await app.client.chat.postMessage({
