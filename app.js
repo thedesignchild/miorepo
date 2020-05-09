@@ -476,7 +476,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
         await app.client.conversations.create({
             token: context.botToken,
-            name: "Mio Group",
+            name: "grouptest",
             user_ids: body.user.id,
             blocks: [{
                     "type": "section",
