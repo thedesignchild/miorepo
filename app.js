@@ -484,8 +484,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
             return_im: true,
             // The name of the conversation
             // Add the user who clicked the message action into the new channel 
-            users: member1,
-            member2
+            users: [member1, member2, 'B011Q5X29MK']
         });
         console.log("this is result");
         console.log(result)
