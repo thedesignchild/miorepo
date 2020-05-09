@@ -474,7 +474,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
     try {
         console.log("Richard ->" + body.user.id)
-        await app.client.conversations.open({
+        const result = await app.client.conversations.open({
             // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
             // The name of the conversation
@@ -482,6 +482,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
             users: body.user.id,
             member2
         });
+        console.log(result);
 
         // await app.client.conversations.create({
         //     token: context.botToken,
