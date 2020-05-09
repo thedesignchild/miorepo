@@ -476,12 +476,11 @@ app.action('nudge_people', async({ ack, body, context }) => {
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: body.user.id,
-            member2,
             blocks: [{
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": `Working remotely can make it harder to connect, so I'm here to help facilitate a little human connection. How about you and ${member2} schedule a call via video :movie_camera: or phone :telephone_receiver:, or at least talk about something cool right here in Slack!`
+                        "text": `Working remotely can make it harder to connect, so I'm here to help facilitate a little human connection. How about you and <@${member2}> schedule a call via video :movie_camera: or phone :telephone_receiver:, or at least talk about something cool right here in Slack!`
                     }
                 },
                 {
