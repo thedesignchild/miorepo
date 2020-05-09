@@ -474,16 +474,6 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
     try {
 
-        const result = await app.client.conversations.create({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            // The name of the conversation
-            name: "pretend-channel",
-            // Add the user who clicked the message action into the new channel 
-            user_ids: payload.user
-        });
-
-
         await app.client.conversations.create({
             token: context.botToken,
             name: "Mio Group",
