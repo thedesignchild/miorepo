@@ -1,40 +1,13 @@
 // REQUIREMENTS
 const { App } = require('@slack/bolt');
-const { createEventAdapter } = require('@slack/events-api');
-const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
-const slackEvents = createEventAdapter(slackSigningSecret);
-const open = require('open');
-const fs = require('fs');
-const readline = require('readline');
-var express = require('express');
-var expapp = express();
-const { google } = require('googleapis');
-const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-const TOKEN_PATH = 'token.json';
-const bodyParser = require('body-parser')
-expapp.use(bodyParser.urlencoded({ extended: true }))
-expapp.use(bodyParser.json())
 
 // TOKENS
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET
 });
+
 const port = process.env.PORT || 3000;
-
-expapp.use('/slack/events', (async() => {
-    // Start your app
-    const server = await slackEvents.start(port);
-    res.send("working")
-    console.log('⚡️ Bolt app is running!');
-}))
-
-
-expapp.get("/", function(req, res) {
-    res.send("welcome to NodeJS app on kenshi")
-});
-
-// expapp.listen(port);
 // FUNCTIONS
 
 // random response
@@ -443,7 +416,7 @@ app.view('view_kenshi', async({ ack, body, view, context }) => {
 });
 
 // button listener for idea task
-slackEvents.action('new_suggestion_activity', async({ ack, body, context }) => {
+app.action('new_suggestion_activity', async({ ack, body, context }) => {
     // Acknowledge action request
     await ack();
     try {
@@ -533,82 +506,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 app.action('schedule_hangout', async({ ack, body, context }) => {
     // Acknowledge action request
     await ack();
-    try {
-
-        // Load client secrets from a local file.
-        fs.readFile('credentials.json', (err, content) => {
-            if (err) return console.log('Error loading client secret file:', err);
-            // Authorize a client with credentials, then call the Google Calendar API.
-            authorize(JSON.parse(content), listEvents);
-        });
-
-        function authorize(credentials, callback) {
-            // const { client_secret, client_id, redirect_uris } = credentials.installed;
-            const client_id = "1009663247373-9ia3ra895brihit6e4e1llbv18s2m7v8.apps.googleusercontent.com";
-            const client_secret = "42rB8lRUGkK7JKGDE2p6zP7y";
-            redirect_uris = ["https://calendar.google.com/calendar"];
-            const oAuth2Client = new google.auth.OAuth2(
-                client_id, client_secret, redirect_uris[0]);
-
-            // Check if we have previously stored a token.
-            fs.readFile(TOKEN_PATH, (err, token) => {
-                if (err) return getAccessToken(oAuth2Client, callback);
-                oAuth2Client.setCredentials(JSON.parse(token));
-                callback(oAuth2Client);
-            });
-        }
-
-        function getAccessToken(oAuth2Client, callback) {
-            const authUrl = oAuth2Client.generateAuthUrl({
-                access_type: 'offline',
-                scope: SCOPES,
-            });
-            open(authUrl);
-            // const rl = readline.createInterface({
-            //     input: process.stdin,
-            //     output: process.stdout,
-            // });
-            // rl.question('Enter the code from that page here: ', (code) => {
-            //     rl.close();
-            oAuth2Client.getToken(code, (err, token) => {
-                if (err) return console.error('Error retrieving access token', err);
-                oAuth2Client.setCredentials(token);
-                // Store the token to disk for later program executions
-                fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-                    if (err) return console.error(err);
-                    console.log('Token stored to', TOKEN_PATH);
-                });
-                callback(oAuth2Client);
-            });
-            // });
-        }
-
-        function listEvents(auth) {
-            const calendar = google.calendar({ version: 'v3', auth });
-            calendar.events.list({
-                calendarId: 'richardjoseph@infeedo.com',
-                timeMin: (new Date()).toISOString(),
-                maxResults: 10,
-                singleEvents: true,
-                orderBy: 'startTime',
-            }, (err, res) => {
-                if (err) return console.log('The API returned an error: ' + err);
-                const events = res.data.items;
-                if (events.length) {
-                    console.log('Upcoming 10 events:');
-                    events.map((event, i) => {
-                        const start = event.start.dateTime || event.start.date;
-                        console.log(`${start} - ${event.summary}`);
-                    });
-                } else {
-                    console.log('No upcoming events found.');
-                }
-            });
-        }
-
-    } catch (error) {
-        console.error(error);
-    }
+    console.log("schedule")
 });
 
 
