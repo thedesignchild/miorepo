@@ -482,12 +482,13 @@ app.action('nudge_people', async({ ack, body, context }) => {
             users: body.user.id,
             member2
         });
-        console.log("Results ->" + result);
-
+        console.log("Results ->");
+        console.log(result);
+        console.log("Results Close->");
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: result.channel.id,
-            test: `test message`
+            text: `test message`
         });
     } catch (error) {
         console.log(error)
