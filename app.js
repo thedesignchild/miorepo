@@ -212,8 +212,9 @@ function animeFnc() {
 
 function searchMember(userNumber) {
     console.log(userNumber);
-    var allUsers = ['UD8UH97FE', 'UDBAA8X9U', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03KX1HRL', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'U4Q9T7UMU', 'U7C962QCT', 'U8FG0MWAD', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UA2NYRY49', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGYP58B6H', 'UGU8YMWAF', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
-    return allUsers[userNumber];
+    // var allUsers = ['UD8UH97FE', 'UDBAA8X9U', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03KX1HRL', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'U4Q9T7UMU', 'U7C962QCT', 'U8FG0MWAD', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UA2NYRY49', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGYP58B6H', 'UGU8YMWAF', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
+    var allUsers = ['UDBAA8X9U']
+    return allUsers[0];
 }
 
 // BLOCK TYPES
@@ -475,6 +476,41 @@ app.action('nudge_people', async({ ack, body, context }) => {
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: body.user.id,
+            member2,
+            blocks: [{
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": `Working remotely can make it harder to connect, so I'm here to help facilitate a little human connection. How about you and ${member2} schedule a call via video :movie_camera: or phone :telephone_receiver:, or at least talk about something cool right here in Slack!`
+                    }
+                },
+                {
+                    "type": "actions",
+                    "elements": [{
+                        "type": "button",
+                        "action_id": "schedule_hangout",
+                        "text": {
+                            "type": "plain_text",
+                            "text": "📅  ",
+                            "emoji": true
+                        },
+                        "value": "hangout"
+                    }]
+                }
+            ]
+        });
+    } catch (error) {
+        console.log(error)
+    }
+
+});
+
+app.action('schedule_hangout', (async({ ack, body, context }) => {
+    await ack();
+    try {
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: body.user.id,
             blocks: [{
                     "type": "section",
                     "text": {
@@ -500,12 +536,6 @@ app.action('nudge_people', async({ ack, body, context }) => {
     } catch (error) {
         console.log(error)
     }
-
-});
-
-app.action('schedule_hangout', (async({ ack }) => {
-
-    await ack();
 }));
 
 
