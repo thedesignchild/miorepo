@@ -24,7 +24,7 @@ const port = process.env.PORT || 3000;
 expapp.use('/', function(req, res) {
     res.send('hellow wolrd');
 });
-expapp.use('/slack/events', slackEvents.requestListener());
+expapp.use('/slack/events', slackEvents.expressMiddleware());
 expapp.use(bodyParser());
 // expapp.listen(port);
 // FUNCTIONS
