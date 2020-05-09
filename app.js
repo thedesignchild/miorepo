@@ -1,6 +1,6 @@
 // REQUIREMENTS
 const { App } = require('@slack/bolt');
-const openURL = require('open');
+var openURL = require('open');
 
 // TOKENS
 const app = new App({
