@@ -504,7 +504,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
 });
 
-app.action('schedule_hangout', open('https://calendar.google.com/calendar'));
+app.action('schedule_hangout', await open('https://calendar.google.com/calendar'));
 
 
 app.action('random_activity_event', async({ ack, body, context }) => {
