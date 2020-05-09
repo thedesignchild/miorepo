@@ -1,5 +1,6 @@
 // REQUIREMENTS
 const { App } = require('@slack/bolt');
+const { createEventAdapter } = require('@slack/events-api');
 const open = require('open');
 const fs = require('fs');
 const readline = require('readline');
@@ -11,7 +12,8 @@ const TOKEN_PATH = 'token.json';
 const bodyParser = require('body-parser')
 expapp.use(bodyParser.urlencoded({ extended: true }))
 expapp.use(bodyParser.json())
-
+const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
+const slackEvents = createEventAdapter(slackSigningSecret);
 // TOKENS
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -19,18 +21,11 @@ const app = new App({
 });
 const port = process.env.PORT || 3000;
 
-expapp.use('/slack/events', (async() => {
-    // Start your app
-    const server = await app.start(port);
-    res.send("working")
-    console.log('⚡️ Bolt app is running!');
-}))
-
-
-expapp.get("/", function(req, res) {
-    res.send("welcome to NodeJS app on kenshi")
+expapp.use('/', function(req, res) {
+    res.send('hellow wolrd');
 });
-
+expapp.use('/slack/events', slackEvents.requestListener());
+expapp.use(bodyParser());
 // expapp.listen(port);
 // FUNCTIONS
 
