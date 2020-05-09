@@ -504,7 +504,11 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
 });
 
-app.action('schedule_hangout', await open('https://calendar.google.com/calendar'));
+app.action('schedule_hangout', (async() => {
+    // Opens the image in the default image viewer and waits for the opened app to quit.
+    await open('https://calendar.google.com/calendar');
+    console.log('The image viewer app quit');
+}));
 
 
 app.action('random_activity_event', async({ ack, body, context }) => {
