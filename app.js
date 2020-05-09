@@ -482,39 +482,41 @@ app.action('nudge_people', async({ ack, body, context }) => {
             users: body.user.id,
             member2
         });
-        console.log(result);
+        console.log("Results ->" + result);
 
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: result.channel.id,
-            blocks: [{
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": `Working remotely can make it harder to connect, so I'm here to help facilitate a little human connection. How about you and <@${member2}> schedule a call via video :movie_camera: or phone :telephone_receiver:, or at least talk about something cool right here in Slack!`
-                    }
-                },
-                {
-                    "type": "actions",
-                    "elements": [{
-                        "type": "button",
-                        "action_id": "schedule_hangout",
-                        "text": {
-                            "type": "plain_text",
-                            "text": "📅  Schedule Hangout",
-                            "emoji": true
-                        },
-                        "value": "hangout"
-                    }]
-                }
-            ]
+            test: `test message`
         });
-
     } catch (error) {
         console.log(error)
     }
 
 });
+
+// blocks: [{
+//     "type": "section",
+//     "text": {
+//         "type": "mrkdwn",
+//         "text": `Working remotely can make it harder to connect, so I'm here to help facilitate a little human connection. How about you and <@${member2}> schedule a call via video :movie_camera: or phone :telephone_receiver:, or at least talk about something cool right here in Slack!`
+//     }
+// },
+// {
+//     "type": "actions",
+//     "elements": [{
+//         "type": "button",
+//         "action_id": "schedule_hangout",
+//         "text": {
+//             "type": "plain_text",
+//             "text": "📅  Schedule Hangout",
+//             "emoji": true
+//         },
+//         "value": "hangout"
+//     }]
+// }
+// ]
+// });
 
 app.action('schedule_hangout', (async({ ack, body, context }) => {
     await ack();
