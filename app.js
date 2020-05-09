@@ -1,6 +1,6 @@
 // REQUIREMENTS
 const { App } = require('@slack/bolt');
-
+const open = require('open');
 
 // TOKENS
 const app = new App({
@@ -506,8 +506,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
 app.action('schedule_hangout', async({ ack, body, context }) => {
     // Acknowledge action request
-    await ack();
-    console.log("schedule")
+    await open('https://calendar.google.com/calendar');
 });
 
 
