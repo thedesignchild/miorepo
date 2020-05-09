@@ -1,5 +1,8 @@
 // REQUIREMENTS
 const { App } = require('@slack/bolt');
+const GoogleSpreadsheet = require('google-spreadsheet');
+const { promisify } = require('util');
+const creds = require('google_drive_kenshi.json');
 
 // TOKENS
 const app = new App({
@@ -505,8 +508,11 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
 app.action('schedule_hangout', async({ ack, body, context }) => {
     // Acknowledge action request
-    await ack();
-    console.log("schedule")
+    const doc = new GoogleSpreadsheet('1EfMMfw43n1de8dwWwQd2qBNEowPBUTxJXI-aPP15W0M');
+    await promisify(doc.useServiceAccountAuth)(creds);
+    const info = await promisify(doc.getInfo)();
+    const sheet = info.worksheets[0];
+    console.log(sheet);
 });
 
 

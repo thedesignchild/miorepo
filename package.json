@@ -10,6 +10,7 @@
     "license": "ISC",
     "dependencies": {
         "@slack/bolt": "^2.0.1",
-        "@slack/events-api": "^2.3.2"
+        "@slack/events-api": "^2.3.2",
+        "google-spreadsheet": "^3.0.11"
     }
 }
