@@ -508,7 +508,7 @@ app.action('schedule_hangout', (async({ ack }) => {
     // Opens the image in the default image viewer and waits for the opened app to quit.
     await ack();
     try {
-        await openURL('https://calendar.google.com', { app: ['google chrome', '--incognito'] });
+        openURL('https://calendar.google.com');
         console.log('The image viewer opened');
     } catch (err) {
         console.log('The image viewer app quit');
