@@ -474,19 +474,12 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
     try {
 
-        // await app.client.conversations.open({
-        //     // The token you used to initialize your app is stored in the `context` object
-        //     token: context.botToken,
-        //     users: body.user.id
-        // });
-
-        await app.client.conversations.create({
+        await app.client.conversations.open({
             // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
             // The name of the conversation
-            name: body.user.id,
             // Add the user who clicked the message action into the new channel 
-            user_ids: body.user.id,
+            users: body.user.id,
             member2
         });
 
