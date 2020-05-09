@@ -1197,11 +1197,9 @@ app.event('app_mention', async({ event, context }) => {
 
 
 // MACHINE STARTER
-
 (async() => {
     // Start your app
-    expapp.listen(port, function() {
-        console.log('⚡️ Bolt app is running!' + port)
-    })
-    console.log();
+    const server = await app.start(port);
+
+    console.log('⚡️ Bolt app is running!');
 })();
