@@ -473,9 +473,21 @@ app.action('nudge_people', async({ ack, body, context }) => {
     }
 
     try {
-        await app.client.chat.postMessage({
+
+        const result = await app.client.conversations.create({
+            // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
-            channel: body.user.id,
+            // The name of the conversation
+            name: "pretend-channel",
+            // Add the user who clicked the message action into the new channel 
+            user_ids: payload.user
+        });
+
+
+        await app.client.conversations.create({
+            token: context.botToken,
+            name: "Mio Group",
+            user_ids: body.user.id,
             blocks: [{
                     "type": "section",
                     "text": {
@@ -490,7 +502,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
                         "action_id": "schedule_hangout",
                         "text": {
                             "type": "plain_text",
-                            "text": "📅  ",
+                            "text": "📅 test ",
                             "emoji": true
                         },
                         "value": "hangout"
