@@ -474,12 +474,12 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
     try {
 
-        await app.client.conversations.create({
+        await app.client.conversations.open({
             // The token you used to initialize your app is stored in the `context` object
-            mpim: body.user.id,
-            member2,
             token: context.botToken,
-            text: "this is a test message"
+            users: body.user.id,
+            member2,
+            text: "this is text message"
         });
 
         // await app.client.conversations.create({
