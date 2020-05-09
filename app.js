@@ -487,7 +487,6 @@ app.action('nudge_people', async({ ack, body, context }) => {
             member2,
             member3
         });
-        app.client.conversations.open.user = [member1, member2, 'B011Q5X29MK'];
         console.log("this is result");
         console.log(result)
     } catch (error) {
