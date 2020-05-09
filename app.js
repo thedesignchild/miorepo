@@ -477,19 +477,13 @@ app.action('nudge_people', async({ ack, body, context }) => {
         const result = await app.client.conversations.open({
             // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
+            return_im: true,
             // The name of the conversation
             // Add the user who clicked the message action into the new channel 
             users: body.user.id,
             member2
         });
-        console.log("Results ->");
-        console.log(result);
-        console.log("Results Close->");
-        await app.client.chat.postMessage({
-            token: context.botToken,
-            channel: result.channel.id,
-            text: `test message`
-        });
+
     } catch (error) {
         console.log(error)
     }
