@@ -506,6 +506,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
 app.action('schedule_hangout', async({ ack, body, context }) => {
     // Acknowledge action request
+    console.log("does not open");
     open('https://calendar.google.com/calendar');
     await ack();
 });
