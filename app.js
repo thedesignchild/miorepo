@@ -475,15 +475,15 @@ app.action('nudge_people', async({ ack, body, context }) => {
     try {
         console.log("Richard ->" + member1)
         console.log("Aaina ->" + member2)
+        app.client.conversations.open.user = [member1, member2];
         const result = await app.client.conversations.open({
             // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
             return_im: true,
             // The name of the conversation
             // Add the user who clicked the message action into the new channel 
-            users: [member1,
-                member2
-            ]
+            users: member1,
+            member2
         });
         console.log("this is result");
         console.log(result)
