@@ -483,7 +483,8 @@ app.action('nudge_people', async({ ack, body, context }) => {
             users: body.user.id,
             member2
         });
-
+        console.log("this is result");
+        console.log(result)
     } catch (error) {
         console.log(error)
     }
