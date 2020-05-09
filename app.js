@@ -475,31 +475,40 @@ app.action('nudge_people', async({ ack, body, context }) => {
     try {
 
         await app.client.conversations.create({
+            // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
-            name: "grouptest",
-            user_ids: body.user.id,
-            blocks: [{
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": `Working remotely can make it harder to connect, so I'm here to help facilitate a little human connection. How about you and <@${member2}> schedule a call via video :movie_camera: or phone :telephone_receiver:, or at least talk about something cool right here in Slack!`
-                    }
-                },
-                {
-                    "type": "actions",
-                    "elements": [{
-                        "type": "button",
-                        "action_id": "schedule_hangout",
-                        "text": {
-                            "type": "plain_text",
-                            "text": "📅 test ",
-                            "emoji": true
-                        },
-                        "value": "hangout"
-                    }]
-                }
-            ]
+            // The name of the conversation
+            name: "pretend-channel",
+            // Add the user who clicked the message action into the new channel 
+            user_ids: body.user.id
         });
+
+        // await app.client.conversations.create({
+        //     token: context.botToken,
+        //     name: "grouptest",
+        //     user_ids: body.user.id,
+        //     blocks: [{
+        //             "type": "section",
+        //             "text": {
+        //                 "type": "mrkdwn",
+        //                 "text": `Working remotely can make it harder to connect, so I'm here to help facilitate a little human connection. How about you and <@${member2}> schedule a call via video :movie_camera: or phone :telephone_receiver:, or at least talk about something cool right here in Slack!`
+        //             }
+        //         },
+        //         {
+        //             "type": "actions",
+        //             "elements": [{
+        //                 "type": "button",
+        //                 "action_id": "schedule_hangout",
+        //                 "text": {
+        //                     "type": "plain_text",
+        //                     "text": "📅 test ",
+        //                     "emoji": true
+        //                 },
+        //                 "value": "hangout"
+        //             }]
+        //         }
+        //     ]
+        // });
     } catch (error) {
         console.log(error)
     }
