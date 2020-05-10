@@ -384,6 +384,7 @@ function rndGenerator(max, min) {
 
 function saveConversations(conversationsArray) {
     let conversationId = '';
+    let conversationsStore = {};
     conversationsArray.forEach(function(conversation) {
         // Key conversation info on its unique ID
         conversationId = conversation["id"];
