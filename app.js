@@ -382,6 +382,18 @@ function rndGenerator(max, min) {
     return value
 }
 
+function saveConversations(conversationsArray) {
+    let conversationId = '';
+    conversationsArray.forEach(function(conversation) {
+        // Key conversation info on its unique ID
+        conversationId = conversation["id"];
+
+        // Store the entire conversation object (you may not need all of the info)
+        conversationsStore[conversationId] = conversation;
+    });
+
+    console.log(conversationsStore);
+}
 
 // EVENTS
 
@@ -468,27 +480,18 @@ app.action('nudge_people', async({ ack, body, context }) => {
     const member1 = body.user.id;
     memberNumber = rndGenerator(0, 8)
     member2 = searchMember(memberNumber)
-    member3 = 'U011Q5X2A77';
+
     while (member1 == member2) {
         memberNumber = rndGenerator(0, 8)
         member2 = searchMember(memberNumber)
     }
 
     try {
-        console.log("Richard ->" + member1)
-        console.log("Aaina ->" + member2)
-        const result = await app.client.conversations.open({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            return_im: true,
-            // The name of the conversation
-            // Add the user who clicked the message action into the new channel 
-            users: member1,
-            member2,
-            member3
-        });
-        console.log("this is result");
-        console.log(result)
+        const result = await app.client.conversations.list({
+            token: process.env.SLACK_BOT_TOKEN
+        })
+
+        saveConversations(result.channels);
     } catch (error) {
         console.log(error)
     }
