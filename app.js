@@ -35,7 +35,9 @@ function responseFnc(num) {
 function googleAPI(method) {
 
     var timeline = new Date();
-    var record = timeline.toString().split(' ')
+    var currentOffset = timeline.getTimezoneOffset();
+    var ISTtime = new Date(timeline.getTime() + (330 + currentOffset) * 60000)
+    var record = ISTtime.toString().split(' ')
     var dateFinal = record[2] + "-" + record[1] + "-" + record[3];
     console.log(dateFinal)
     console.log(record[4])
