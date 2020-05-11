@@ -850,7 +850,7 @@ app.message(async({ message, body, context }) => {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": helloTxt[0] + " :wave:"
+                                "text": "Meow 🐈"
                             }
                         },
                         {
