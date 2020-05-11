@@ -436,6 +436,7 @@ app.view('view_suggestion', async({ ack, body, view, context }) => {
     textValue = view.state.values.input_suggestion.submit_suggestion.value;
     byUser = body.user.id;
     try {
+        googleAPI('people_suggestion_sent')
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: '#people-team',
@@ -451,6 +452,7 @@ app.view('view_kenshi', async({ ack, body, view, context }) => {
     textValue = view.state.values.input_kenshi.submit_kenshi.value;
     byUser = body.user.id;
     try {
+        googleAPI('new_feature_sent')
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: '#richard-box_2',
@@ -466,7 +468,7 @@ app.action('new_suggestion_activity', async({ ack, body, context }) => {
     // Acknowledge action request
     await ack();
     try {
-        googleAPI('Peoples_mention')
+        googleAPI('people_suggestion_open')
         const result = await app.client.views.open({
             token: context.botToken,
             // Pass a valid trigger_id within 3 seconds of receiving it
@@ -524,7 +526,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
     sorterArray = [member1, member2]
     sorterArray.sort();
     try {
-        googleAPI('Nudge_mention')
+        googleAPI('nudge_request')
         stringify = sorterArray[0] + "," + sorterArray[1]
         await app.client.chat.postMessage({
             token: context.botToken,
@@ -574,6 +576,7 @@ app.action('accept_chat_action', (async({ ack, body, context }) => {
     user0 = users[0];
     user1 = users[1];
     try {
+        googleAPI('nudge_participated')
         const result = await app.client.conversations.open({
             token: context.botToken,
             return_im: true,
@@ -627,7 +630,7 @@ app.action('retry_chat_action', (async({ ack, body, context }) => {
     sorterArray.sort();
     console.log(sorterArray)
     try {
-        googleAPI('Nudge_mention')
+        googleAPI('nudge_request')
         stringify = sorterArray[0] + "," + sorterArray[1]
         await app.client.chat.postMessage({
             token: context.botToken,
@@ -679,7 +682,7 @@ app.action('suggest_first_conversation', async({ ack, body, context }) => {
     console.log(taskNumber)
     var textMessage = conversationStarter(taskNumber)
     try {
-        googleAPI('Starter_mention')
+        googleAPI('conversation_request')
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: body.channel.id,
@@ -706,7 +709,7 @@ app.action('suggest_first_conversation', async({ ack, body, context }) => {
 app.action('random_activity_event', async({ ack, body, context }) => {
     // Acknowledge action request
     await ack();
-    googleAPI('Private_mention')
+    googleAPI('random_activity_request')
         // Generate a task by random number
     var max = 18,
         min = 1;
@@ -791,7 +794,7 @@ app.action('kenshi_activity', async({ ack, body, context }) => {
     // Acknowledge action request
     await ack();
     try {
-        googleAPI('Feature_mention')
+        googleAPI('new_feature_open')
         const result = await app.client.views.open({
             token: context.botToken,
             // Pass a valid trigger_id within 3 seconds of receiving it
@@ -835,7 +838,6 @@ app.action('kenshi_activity', async({ ack, body, context }) => {
 app.message(async({ message, body, context }) => {
 
     if (body.event.channel.charAt(0) == "D") {
-        googleAPI('Private_mention')
         var txt = message.text;
         var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste|meow)\b/);
         var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|what|random|recommend)/);
@@ -843,6 +845,9 @@ app.message(async({ message, body, context }) => {
 
         if (helloTxt != null) {
             try {
+
+                googleAPI('hello_request')
+
                 await app.client.chat.postMessage({
                     token: context.botToken,
                     channel: message.user,
@@ -866,6 +871,9 @@ app.message(async({ message, body, context }) => {
                 console.log(error)
             }
         } else if (special != null) {
+
+            googleAPI('specific_activity_request')
+
             var requestCase = special[0];
             switch (requestCase) {
                 case 'letter':
@@ -924,6 +932,9 @@ app.message(async({ message, body, context }) => {
             }
 
         } else if (helpTxt != null) {
+
+            googleAPI('random_activity_request')
+
             // Generate a task by random number
             var max = 18,
                 min = 1;
@@ -1020,6 +1031,9 @@ app.message(async({ message, body, context }) => {
 
 // listener if the user has clicked on the home tab
 app.event('app_home_opened', async({ payload, context }) => {
+
+    googleAPI('app_home_visit')
+
     const userId = payload.user;
     try {
         // Call the views.publish method using the built-in WebClient
@@ -1204,8 +1218,6 @@ app.event('app_home_opened', async({ payload, context }) => {
 // respond in channels where the app is mentioned
 app.event('app_mention', async({ event, context }) => {
 
-    googleAPI('Channel_mention')
-
     var txt = event.text;
     var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
     var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|cook|food|tv|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
@@ -1214,6 +1226,9 @@ app.event('app_mention', async({ event, context }) => {
     // console.log(helpTxt);
     // console.log(special);
     if (helloTxt != null) {
+
+        googleAPI('hello_request')
+
         try {
             await app.client.chat.postMessage({
                 token: context.botToken,
@@ -1238,6 +1253,9 @@ app.event('app_mention', async({ event, context }) => {
             console.log(error)
         }
     } else if (special != null) {
+
+        googleAPI('specific_activity_request')
+
         var requestCase = special[0];
         switch (requestCase) {
             case 'letter':
@@ -1296,6 +1314,9 @@ app.event('app_mention', async({ event, context }) => {
         }
 
     } else if (helpTxt != null) {
+
+        googleAPI('random_activity_request')
+
         // Generate a task by random number
         var max = 18,
             min = 0;
@@ -1373,6 +1394,9 @@ app.event('app_mention', async({ event, context }) => {
             console.log(error)
         }
     } else {
+
+        googleAPI('conversation_request')
+
         max = 24
         min = 0
         var randNumber = rndGenerator(max, min);
