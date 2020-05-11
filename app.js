@@ -1031,9 +1031,6 @@ app.message(async({ message, body, context }) => {
 
 // listener if the user has clicked on the home tab
 app.event('app_home_opened', async({ payload, context }) => {
-
-    googleAPI('app_home_visit')
-
     const userId = payload.user;
     try {
         // Call the views.publish method using the built-in WebClient
