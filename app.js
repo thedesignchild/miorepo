@@ -1016,6 +1016,8 @@ app.message(async({ message, body, context }) => {
             var randNumber = rndGenerator(max, min);
             var randomText = responseFnc(randNumber)
             try {
+                googleAPI('conversation_request')
+
                 await app.client.chat.postMessage({
                     token: context.botToken,
                     channel: message.user,
