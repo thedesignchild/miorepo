@@ -991,7 +991,7 @@ app.message(async({ message, body, context }) => {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": "I help in suggesting activities or tasks you can do in your free time, keeping you positive and motivated. Just mention me along with keywords like *help*, *ideas*, *suggestions*, *random* and I will post an activity"
+                                "text": "I’m here to suggest activities or fun ideas you can do in your free time, helping keep you positive and motivated. Just mention me along with a keyword like *help, ideas, suggestions, random* and I’ll post a fun activity just for you!"
                             }
                         }
                     ]
@@ -1236,7 +1236,7 @@ app.event('app_home_opened', async({ payload, context }) => {
                         "type": "context",
                         "elements": [{
                             "type": "mrkdwn",
-                            "text": "You can give *suggestions, feedback or ideas* to the People's team to help make the workspace more engaging"
+                            "text": "You can give *suggestions, feedback or ideas* and I'll pass them over to the People's team so they can help make the workspace more engaging. I proposed more toy mice 🐁"
                         }]
                     },
                     {
@@ -1266,14 +1266,14 @@ app.event('app_home_opened', async({ payload, context }) => {
                         "type": "section",
                         "text": {
                             "type": "mrkdwn",
-                            "text": "*Let's Hangout! 🐈*"
+                            "text": "*Watercooler Talks! 🐈*"
                         }
                     },
                     {
                         "type": "context",
                         "elements": [{
                             "type": "mrkdwn",
-                            "text": "I will randomly nudge people from across the workspace and encourage them to meet (of course remotely :computer:) for *coffee* :coffee:, *lunch* 🌮, or for a *random chat* 😄"
+                            "text": "I will randomly nudge people from across the workspace and encourage them to meet (of course remotely :computer:) for *coffee* :coffee:, *lunch* 🌮, or for a *random conversation* 😄"
                         }]
                     },
                     {
@@ -1303,14 +1303,14 @@ app.event('app_home_opened', async({ payload, context }) => {
                         "type": "section",
                         "text": {
                             "type": "mrkdwn",
-                            "text": "*Activity in free time 😺 *"
+                            "text": "*Free Time Fun 😺 *"
                         }
                     },
                     {
                         "type": "context",
                         "elements": [{
                             "type": "mrkdwn",
-                            "text": "Mention me as @mio in a channel or DM. I will suggest a random activity that you could do in your free time. You could also use keywords like *anime*, *books*, *joke*, *food* and many more to get specific suggestions as well"
+                            "text": "Mention @mio in a channel or DM and I will suggest a random activity that you could do in your free time. You could also use keywords like *anime*, *books*, *joke*, *food* and many more to get specific suggestions. Meow! 😽"
                         }]
                     },
                     {
@@ -1412,7 +1412,7 @@ app.event('app_mention', async({ event, body, context }) => {
                         "type": "section",
                         "text": {
                             "type": "mrkdwn",
-                            "text": "I help in suggesting activities or tasks you can do in your free time, keeping you positive and motivated. Just mention me along with keywords like *help*, *ideas*, *suggestions*, *random* and I will post an activity"
+                            "text": "I’m here to suggest activities or fun ideas you can do in your free time, helping keep you positive and motivated. Just mention me along with a keyword like *help, ideas, suggestions, random* and I’ll post a fun activity just for you!"
                         }
                     }
                 ]
