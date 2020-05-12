@@ -1002,6 +1002,7 @@ app.message(async({ message, body, context }) => {
         } else if (special != null) {
 
             googleAPI('specific_activity_request', identify)
+            conversation_tracker(message.text)
 
             var requestCase = special[0];
             switch (requestCase) {
@@ -1422,6 +1423,7 @@ app.event('app_mention', async({ event, body, context }) => {
     } else if (special != null) {
 
         googleAPI('specific_activity_request', identify)
+        conversation_tracker(event.text)
 
         var requestCase = special[0];
         switch (requestCase) {
