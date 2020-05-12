@@ -1063,7 +1063,7 @@ app.message(async({ message, body, context }) => {
         } else if (helpTxt != null) {
 
             googleAPI('random_activity_request', identify)
-            conversation_tracker(event.text)
+            conversation_tracker(message.text)
 
             // Generate a task by random number
             var max = 18,
