@@ -1211,7 +1211,7 @@ app.event('app_home_opened', async({ payload, context }) => {
                         "type": "context",
                         "elements": [{
                             "type": "mrkdwn",
-                            "text": "I'm @mio, inFeedo's workspace pet! I assist the People’s team in making the workspace engaging for hoomans and helping us all grow to our full potential. Balancing work and play is key for a healthy lifestyle, and I’m here to help! Just mention me along with a keyword like help, ideas, suggestions, or random and I will share an activity you can do to brighten up your day! To know more, clich here: https://bit.ly/35ScQI5"
+                            "text": "I'm @mio, inFeedo's workspace pet! I assist the People’s team in making the workspace engaging for hoomans and helping us all grow to our full potential. Balancing work and play is key for a healthy lifestyle, and I’m here to help! Just mention me along with a keyword like help, ideas, suggestions, or random and I will share an activity you can do to brighten up your day! \n\n To know more, clich here: https://bit.ly/35ScQI5 \n"
                         }]
                     },
                     {
