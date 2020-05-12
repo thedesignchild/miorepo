@@ -620,7 +620,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
                             "action_id": "accept_chat_action",
                             "text": {
                                 "type": "plain_text",
-                                "text": "✅  Accept",
+                                "text": "✔  Accept",
                                 "emoji": true
                             },
                             "value": stringify
@@ -680,7 +680,7 @@ app.action('accept_chat_action', (async({ ack, body, context }) => {
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": `Meow! <@${user0}> and <@${user1}> 😸 \n\n Working remotely can make it harder to connect well and know your teammates, so I'm here to help out \n\n You can connect via a phone call 📞  _(even video calls are awesome 😻 )_  or have a conversation right here on Slack!`
+                        "text": `Meow! <@${user0}> and <@${user1}> 😸 \n\n Working remotely can make it harder to connect and interact with your teammates, so I'm here to help out \n\n You can connect via a phone call 📞  _(even video calls are awesome 😻 )_  or have a conversation right here on Slack!`
                     }
                 },
                 {
@@ -747,7 +747,7 @@ app.action('retry_chat_action', (async({ ack, body, context }) => {
                             "action_id": "accept_chat_action",
                             "text": {
                                 "type": "plain_text",
-                                "text": "✅  Accept",
+                                "text": "✔  Accept",
                                 "emoji": true
                             },
                             "value": stringify
@@ -1211,7 +1211,7 @@ app.event('app_home_opened', async({ payload, context }) => {
                         "type": "context",
                         "elements": [{
                             "type": "mrkdwn",
-                            "text": "I'm @mio! inFeedo's workspace pet. I assist the People's team to make the workspace engaging for hoomans and help them grow to their full potential. Work and play are necessary to go together for a healthier lifestyle. Just mention me along with keywords like *help*, *ideas*, *suggestions*, *random* and I will post an activity to cheer up your day!"
+                            "text": "I'm @mio, inFeedo's workspace pet! I assist the People’s team in making the workspace engaging for hoomans and helping us all grow to our full potential. Balancing work and play is key for a healthy lifestyle, and I’m here to help! Just mention me along with a keyword like help, ideas, suggestions, or random and I will share an activity you can do to brighten up your day! To know more, clich here: https://bit.ly/35ScQI5"
                         }]
                     },
                     {
