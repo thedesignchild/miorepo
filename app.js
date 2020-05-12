@@ -962,7 +962,7 @@ app.message(async({ message, body, context }) => {
         var txt = message.text;
         var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste|meow)\b/);
         var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|what|random|recommend)/);
-        var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|tv|cook|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
+        var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|tv|cook|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|song|joke)/);
 
         identify = await app.client.users.info({
             // The token you used to initialize your app is stored in the `context` object
@@ -1029,6 +1029,7 @@ app.message(async({ message, body, context }) => {
                     messageByBot = movieFnc();
                     break;
                 case 'music':
+                case 'song':
                     messageByBot = musicFnc();
                     break;
                 case 'skills':
@@ -1377,7 +1378,7 @@ app.event('app_mention', async({ event, body, context }) => {
 
     var txt = event.text;
     var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste)\b/);
-    var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|cook|food|tv|recipe|book|netflix|language|meditate|movie|family|social|anime|music|joke)/);
+    var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|cook|food|tv|recipe|book|netflix|language|meditate|movie|family|social|anime|music|song|joke)/);
     var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|what|random|recommend)/);
     // console.log(helloTxt);
     // console.log(helpTxt);
@@ -1450,6 +1451,7 @@ app.event('app_mention', async({ event, body, context }) => {
                 messageByBot = movieFnc();
                 break;
             case 'music':
+            case 'song':
                 messageByBot = musicFnc();
                 break;
             case 'skills':
