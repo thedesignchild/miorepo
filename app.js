@@ -38,6 +38,14 @@ function sayGoodMorning() {
     currentDate = currentDate - 19800
     console.log(currentDate)
 
+    // app.client.chat.postMessage({
+    //     token: context.botToken,
+    //     channel: 'U01187SMWUW',
+    //     post_at: currentDate,
+    //     text: `test value`
+    // });
+
+
 }
 // random response
 function responseFnc(num) {
@@ -593,7 +601,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
     // Acknowledge action request
     await ack();
-
+    console.log(context)
     const member1 = body.user.id;
     memberNumber = rndGenerator(0, 54)
     const member2 = searchMember(memberNumber)
