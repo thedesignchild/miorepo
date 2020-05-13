@@ -41,12 +41,16 @@ function sayGoodMorning() {
     console.log(currentDate)
 
     for (i = 0; i < allUsers.length; i++) {
-        app.client.chat.scheduleMessage({
-            token: process.env.SLACK_BOT_TOKEN,
-            channel: allUsers[i],
-            post_at: currentDate,
-            text: `Good morning <@${allUsers[i]}>! Hope you have a blessed and stress free day! test 🐈`
-        });
+        try {
+            app.client.chat.scheduleMessage({
+                token: process.env.SLACK_BOT_TOKEN,
+                channel: allUsers[i],
+                post_at: currentDate,
+                text: `Good morning <@${allUsers[i]}>! Hope you have a blessed and stress free day! test 🐈`
+            });
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 // 86400000
