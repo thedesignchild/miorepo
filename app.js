@@ -39,14 +39,14 @@ function sayGoodMorning() {
     currentDate = currentDate - 19800
     console.log(currentDate)
 
-    for (i = 0; i < allUsers.length; i++) {
-        app.client.chat.postMessage({
-            token: process.env.SLACK_BOT_TOKEN,
-            channel: allUsers[i],
-            post_at: 1589346900,
-            text: `Good morning! Hope you have a blessed and stress free day! 🐈`
-        });
-    }
+    // for (i = 0; i < allUsers.length; i++) {
+    //     app.client.chat.postMessage({
+    //         token: process.env.SLACK_BOT_TOKEN,
+    //         channel: allUsers[i],
+    //         post_at: 1589346900,
+    //         text: `Good morning! Hope you have a blessed and stress free day! 🐈`
+    //     });
+    // }
 
 }
 // random response
