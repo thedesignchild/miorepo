@@ -36,7 +36,7 @@ function sayGoodMorning() {
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     var record = timeline.toString().split(' ')
     var currentMonth = month.indexOf(record[1])
-    var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 13, 11, 00, 00)) / 1000)
+    var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 13, 52, 00, 00)) / 1000)
     currentDate = currentDate - 19800
     console.log(currentDate)
 
@@ -51,10 +51,8 @@ function sayGoodMorning() {
 }
 
 // 1589346000
-
 // 43200000
-
-// setInterval(sayGoodMorning(), 6000);
+setInterval(function() { sayGoodMorning() }, 1000);
 
 // random response
 function responseFnc(num) {
