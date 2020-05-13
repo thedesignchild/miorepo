@@ -32,7 +32,7 @@ function sayGoodMorning() {
     var currentOffset = timeline.getTimezoneOffset();
     var ISTtime = new Date(timeline.getTime() + (330 + currentOffset) * 60000)
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    var record = ISTtime.toString().split()
+    var record = ISTtime.toString().split(' ')
     var currentMonth = month.indexOf(record[1])
     var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 10, 30, 00, 00)) / 1000)
     console.log(currentDate)
