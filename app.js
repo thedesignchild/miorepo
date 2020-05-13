@@ -41,10 +41,10 @@ function sayGoodMorning() {
     console.log(currentDate)
 
     for (i = 0; i < allUsers.length; i++) {
-        app.client.chat.postMessage({
+        app.client.chat.scheduleMessage({
             token: process.env.SLACK_BOT_TOKEN,
             channel: allUsers[i],
-            post_at: 1589358600,
+            post_at: 1589358900,
             text: `Good morning! Hope you have a blessed and stress free day! 🐈`
         });
     }
@@ -52,7 +52,8 @@ function sayGoodMorning() {
 
 // 1589346000
 // 43200000
-// setInterval(function() { sayGoodMorning() }, 5000);
+// 86400000
+setInterval(function() { sayGoodMorning() }, 20000);
 
 // random response
 function responseFnc(num) {
