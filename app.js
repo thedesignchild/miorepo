@@ -29,12 +29,13 @@ const port = process.env.PORT || 3000;
 
 function sayGoodMorning() {
     var timeline = new Date();
-    var currentOffset = timeline.getTimezoneOffset();
-    var ISTtime = new Date(timeline.getTime() + (330 + currentOffset) * 60000)
+    // var currentOffset = timeline.getTimezoneOffset();
+    // var ISTtime = new Date(timeline.getTime() + (330 + currentOffset) * 60000)
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    var record = ISTtime.toString().split(' ')
+    var record = timeline.toString().split(' ')
     var currentMonth = month.indexOf(record[1])
     var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 10, 30, 00, 00)) / 1000)
+    currentDate = currentDate - 19800
     console.log(currentDate)
 
 }
