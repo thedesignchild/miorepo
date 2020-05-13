@@ -36,7 +36,7 @@ function sayGoodMorning() {
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     var record = timeline.toString().split(' ')
     var currentMonth = month.indexOf(record[1])
-    var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 14, 25, 00, 00)) / 1000)
+    var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 06, 00, 00, 00)) / 1000)
     currentDate = currentDate - 19800
     console.log(currentDate)
 
@@ -45,12 +45,12 @@ function sayGoodMorning() {
             token: process.env.SLACK_BOT_TOKEN,
             channel: allUsers[i],
             post_at: currentDate,
-            text: `Good morning ${allUsers[i]}! Hope you have a blessed and stress free day! test 🐈`
+            text: `Good morning <@${allUsers[i]}>! Hope you have a blessed and stress free day! test 🐈`
         });
     }
 }
 // 86400000
-setInterval(function() { sayGoodMorning() }, 60000);
+setInterval(function() { sayGoodMorning() }, 86400000);
 
 // random response
 function responseFnc(num) {
