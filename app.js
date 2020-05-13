@@ -505,6 +505,13 @@ app.view('view_suggestion', async({ ack, body, view, context }) => {
     await ack();
     textValue = view.state.values.input_suggestion.submit_suggestion.value;
     try {
+
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: '#people-team',
+            text: `*<@${body.user.id}> has the following suggestion* \n` + textValue
+        });
+
         identify = await app.client.users.info({
             // The token you used to initialize your app is stored in the `context` object
             token: context.botToken,
@@ -513,11 +520,7 @@ app.view('view_suggestion', async({ ack, body, view, context }) => {
         });
 
         googleAPI('people_suggestion_sent', identify)
-        await app.client.chat.postMessage({
-            token: context.botToken,
-            channel: '#people-team',
-            text: `*<@${body.user.id}> has the following suggestion* \n` + textValue
-        });
+
     } catch (error) {
         console.log(error)
     }
@@ -527,6 +530,11 @@ app.view('view_kenshi', async({ ack, body, view, context }) => {
     await ack();
     textValue = view.state.values.input_kenshi.submit_kenshi.value;
     try {
+        await app.client.chat.postMessage({
+            token: context.botToken,
+            channel: '#richard-box_2',
+            text: `*<@${body.user.id}> has the following suggestion* \n` + textValue
+        });
 
         identify = await app.client.users.info({
             // The token you used to initialize your app is stored in the `context` object
@@ -534,12 +542,9 @@ app.view('view_kenshi', async({ ack, body, view, context }) => {
             // Call users.info for the user that joined the workspace
             user: body.user.id
         });
+
         googleAPI('new_feature_sent', identify)
-        await app.client.chat.postMessage({
-            token: context.botToken,
-            channel: '#richard-box_2',
-            text: `*<@${body.user.id}> has the following suggestion* \n` + textValue
-        });
+
     } catch (error) {
         console.log(error)
     }
@@ -590,7 +595,9 @@ app.action('new_suggestion_activity', async({ ack, body, context }) => {
             // Call users.info for the user that joined the workspace
             user: body.user.id
         });
+
         googleAPI('people_suggestion_open', identify)
+
         console.log(result);
     } catch (error) {
         console.error(error);
@@ -617,14 +624,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
     sorterArray.sort();
     try {
 
-        identify = await app.client.users.info({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            // Call users.info for the user that joined the workspace
-            user: body.user.id
-        });
 
-        googleAPI('nudge_request', identify)
         stringify = sorterArray[0] + "," + sorterArray[1]
         await app.client.chat.postMessage({
             token: context.botToken,
@@ -662,6 +662,16 @@ app.action('nudge_people', async({ ack, body, context }) => {
                 }
             ]
         })
+
+        identify = await app.client.users.info({
+            // The token you used to initialize your app is stored in the `context` object
+            token: context.botToken,
+            // Call users.info for the user that joined the workspace
+            user: body.user.id
+        });
+
+        googleAPI('nudge_request', identify)
+
     } catch (error) {
         console.log(error)
     }
@@ -675,21 +685,6 @@ app.action('accept_chat_action', (async({ ack, body, context }) => {
     user1 = users[1];
     try {
 
-        identify = await app.client.users.info({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            // Call users.info for the user that joined the workspace
-            user: user0
-        });
-        identify2 = await app.client.users.info({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            // Call users.info for the user that joined the workspace
-            user: user1
-        });
-
-
-        googleAPI_nudge('nudge_participated', identify, identify2)
         const result = await app.client.conversations.open({
             token: context.botToken,
             return_im: true,
@@ -721,6 +716,22 @@ app.action('accept_chat_action', (async({ ack, body, context }) => {
                 }
             ]
         })
+
+        identify = await app.client.users.info({
+            // The token you used to initialize your app is stored in the `context` object
+            token: context.botToken,
+            // Call users.info for the user that joined the workspace
+            user: user0
+        });
+        identify2 = await app.client.users.info({
+            // The token you used to initialize your app is stored in the `context` object
+            token: context.botToken,
+            // Call users.info for the user that joined the workspace
+            user: user1
+        });
+
+        googleAPI_nudge('nudge_participated', identify, identify2)
+
     } catch (error) {
         console.log(error)
     }
@@ -743,15 +754,6 @@ app.action('retry_chat_action', (async({ ack, body, context }) => {
     sorterArray.sort();
     console.log(sorterArray)
     try {
-
-        identify = await app.client.users.info({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            // Call users.info for the user that joined the workspace
-            user: body.user.id
-        });
-
-        googleAPI('nudge_request', identify)
         stringify = sorterArray[0] + "," + sorterArray[1]
         await app.client.chat.postMessage({
             token: context.botToken,
@@ -789,6 +791,17 @@ app.action('retry_chat_action', (async({ ack, body, context }) => {
                 }
             ]
         })
+
+
+        identify = await app.client.users.info({
+            // The token you used to initialize your app is stored in the `context` object
+            token: context.botToken,
+            // Call users.info for the user that joined the workspace
+            user: body.user.id
+        });
+
+        googleAPI('nudge_request', identify)
+
     } catch (error) {
         console.log(error)
     }
@@ -804,14 +817,6 @@ app.action('suggest_first_conversation', async({ ack, body, context }) => {
     var textMessage = conversationStarter(taskNumber)
     try {
 
-        identify = await app.client.users.info({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            // Call users.info for the user that joined the workspace
-            user: body.user.id
-        });
-
-        googleAPI('conversation_request', identify)
         await app.client.chat.postMessage({
             token: context.botToken,
             channel: body.channel.id,
@@ -827,6 +832,17 @@ app.action('suggest_first_conversation', async({ ack, body, context }) => {
                 },
             ]
         });
+
+
+        identify = await app.client.users.info({
+            // The token you used to initialize your app is stored in the `context` object
+            token: context.botToken,
+            // Call users.info for the user that joined the workspace
+            user: body.user.id
+        });
+
+        googleAPI('conversation_request', identify)
+
     } catch (error) {
         console.log(error)
     }
@@ -996,9 +1012,6 @@ app.message(async({ message, body, context }) => {
 
         if (helloTxt != null) {
             try {
-
-                googleAPI('hello_request', identify)
-
                 await app.client.chat.postMessage({
                     token: context.botToken,
                     channel: message.user,
@@ -1018,13 +1031,11 @@ app.message(async({ message, body, context }) => {
                         }
                     ]
                 })
+                googleAPI('hello_request', identify)
             } catch (error) {
                 console.log(error)
             }
         } else if (special != null) {
-
-            googleAPI('specific_activity_request', identify)
-            conversation_tracker(message.text)
 
             var requestCase = special[0];
             switch (requestCase) {
@@ -1081,14 +1092,15 @@ app.message(async({ message, body, context }) => {
                     channel: message.user,
                     blocks: messageByBot
                 });
+
+                googleAPI('specific_activity_request', identify)
+                conversation_tracker(message.text)
+
             } catch (error) {
                 console.log(error)
             }
 
         } else if (helpTxt != null) {
-
-            googleAPI('random_activity_request', identify)
-            conversation_tracker(message.text)
 
             // Generate a task by random number
             var max = 18,
@@ -1162,6 +1174,10 @@ app.message(async({ message, body, context }) => {
                     channel: message.user,
                     blocks: messageByBot
                 });
+
+                googleAPI('random_activity_request', identify)
+                conversation_tracker(message.text)
+
             } catch (error) {
                 console.log(error)
             }
@@ -1171,14 +1187,16 @@ app.message(async({ message, body, context }) => {
             var randNumber = rndGenerator(max, min);
             var randomText = responseFnc(randNumber)
             try {
-                googleAPI('conversation_request', identify)
-                conversation_tracker(message.text)
 
                 await app.client.chat.postMessage({
                     token: context.botToken,
                     channel: message.user,
                     text: randomText
                 });
+
+                googleAPI('conversation_request', identify)
+                conversation_tracker(message.text)
+
             } catch (error) {
                 console.log(error)
             }
@@ -1208,7 +1226,7 @@ app.message(async({ message, body, context }) => {
         });
 
         googleAPI_nudge('nudged_conversation', identify, identify2)
-        conversation_tracker(message.text)
+
     }
 
 });
@@ -1419,8 +1437,6 @@ app.event('app_mention', async({ event, body, context }) => {
 
     if (helloTxt != null) {
 
-        googleAPI('hello_request', identify)
-
         try {
             await app.client.chat.postMessage({
                 token: context.botToken,
@@ -1441,13 +1457,14 @@ app.event('app_mention', async({ event, body, context }) => {
                     }
                 ]
             })
+
+
+            googleAPI('hello_request', identify)
+
         } catch (error) {
             console.log(error)
         }
     } else if (special != null) {
-
-        googleAPI('specific_activity_request', identify)
-        conversation_tracker(event.text)
 
         var requestCase = special[0];
         switch (requestCase) {
@@ -1504,14 +1521,15 @@ app.event('app_mention', async({ event, body, context }) => {
                 channel: event.channel,
                 blocks: messageByBot
             });
+
+            googleAPI('specific_activity_request', identify)
+            conversation_tracker(event.text)
+
         } catch (error) {
             console.log(error)
         }
 
     } else if (helpTxt != null) {
-
-        googleAPI('random_activity_request', identify)
-        conversation_tracker(event.text)
 
         // Generate a task by random number
         var max = 18,
@@ -1586,13 +1604,14 @@ app.event('app_mention', async({ event, body, context }) => {
                 channel: event.channel,
                 blocks: messageByBot
             });
+
+            googleAPI('random_activity_request', identify)
+            conversation_tracker(event.text)
+
         } catch (error) {
             console.log(error)
         }
     } else {
-
-        googleAPI('conversation_request', identify)
-        conversation_tracker(event.text)
 
         max = 24
         min = 0
@@ -1606,6 +1625,10 @@ app.event('app_mention', async({ event, body, context }) => {
                 channel: event.channel,
                 text: randomText
             });
+
+            googleAPI('conversation_request', identify)
+            conversation_tracker(event.text)
+
         } catch (error) {
             console.log(error)
         }
