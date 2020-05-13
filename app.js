@@ -38,7 +38,6 @@ function sayGoodMorning() {
     var record = timeline.toString().split(' ')
     var currentMonth = month.indexOf(record[1])
     var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 14, 20, 00, 00)) / 1000)
-    currentDate = currentDate - 19800
     console.log(currentDate)
 
     for (i = 0; i < allUsers.length; i++) {
