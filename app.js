@@ -53,7 +53,7 @@ function sayGoodMorning() {
 // 1589346000
 // 43200000
 // 86400000
-setInterval(function() { sayGoodMorning() }, 20000);
+// setInterval(function() { sayGoodMorning() }, 20000);
 
 // random response
 function responseFnc(num) {
