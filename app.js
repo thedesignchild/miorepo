@@ -29,14 +29,15 @@ const port = process.env.PORT || 3000;
 
 function sayGoodMorning() {
     var timeline = new Date();
-    //var allUsers = ['UD8UH97FE', 'UDBAA8X9U', 'U01187SMWUW', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03KX1HRL', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'U4Q9T7UMU', 'U7C962QCT', 'U8FG0MWAD', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UA2NYRY49', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGYP58B6H', 'UGU8YMWAF', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
+    var
+    // var allUsers = ['UD8UH97FE', 'UDBAA8X9U', 'U01187SMWUW', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03KX1HRL', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'U4Q9T7UMU', 'U7C962QCT', 'U8FG0MWAD', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UA2NYRY49', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGYP58B6H', 'UGU8YMWAF', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
     var allUsers = ['U01187SMWUW'];
     // var currentOffset = timeline.getTimezoneOffset();
     // var ISTtime = new Date(timeline.getTime() + (330 + currentOffset) * 60000)
     var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     var record = timeline.toString().split(' ')
     var currentMonth = month.indexOf(record[1])
-    var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 13, 52, 00, 00)) / 1000)
+    var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 14, 20, 00, 00)) / 1000)
     currentDate = currentDate - 19800
     console.log(currentDate)
 
@@ -44,16 +45,13 @@ function sayGoodMorning() {
         app.client.chat.scheduleMessage({
             token: process.env.SLACK_BOT_TOKEN,
             channel: allUsers[i],
-            post_at: 1589358900,
-            text: `Good morning! Hope you have a blessed and stress free day! 🐈`
+            post_at: currentDate,
+            text: `Good morning ${allUsers[i]}! Hope you have a blessed and stress free day! test 🐈`
         });
     }
 }
-
-// 1589346000
-// 43200000
 // 86400000
-// setInterval(function() { sayGoodMorning() }, 20000);
+setInterval(function() { sayGoodMorning() }, 60000);
 
 // random response
 function responseFnc(num) {
