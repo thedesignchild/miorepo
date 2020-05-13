@@ -26,6 +26,18 @@ const sheets = google.sheets({ version: 'v4', auth });
 const port = process.env.PORT || 3000;
 // FUNCTIONS
 
+
+function sayGoodMorning() {
+    var timeline = new Date();
+    var currentOffset = timeline.getTimezoneOffset();
+    var ISTtime = new Date(timeline.getTime() + (330 + currentOffset) * 60000)
+    var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    var record = ISTtime.toString().split()
+    var currentMonth = month.indexOf(record[1])
+    var currentDate = Math.round((new Date(record[3], currentMonth, record[2], 10, 30, 00, 00)) / 1000)
+    console.log(currentDate)
+
+}
 // random response
 function responseFnc(num) {
     var typeResponse = ["Ayo! 🐱", "Dope! 😸", "Noice Thought 👌", "What? Really? 🐈", "Yos. Don't mind. 😹", "Gotcha! 😺", "Aye Aye! 😸", "You do know I'm a kitty right? 🙀", "Noice 👌", "Okie Dokie! 😸", "I like you hooman! 😻", "Arigato! 😽", "Okieee!", "Toosie Slide! 🐱‍", "It ain't easy being purr-fect 😽", "I'm a purr-ro 🐱‍", "What a cat-astrophe 🙀", "Stay Paw-sitive 😹", "Are you kitten' me?", "I'm feline Goooood", "Catitude is everything! 😼", "I used to previously climb meowtains 🗻", "Oh *paw*lease 🐈", "How about nahhhhh! 😼", "you are puurfect ❤"]
@@ -1597,4 +1609,5 @@ app.event('app_mention', async({ event, body, context }) => {
     const server = await app.start(port);
 
     console.log('⚡️ Bolt app is running!');
+    sayGoodMorning();
 })();
