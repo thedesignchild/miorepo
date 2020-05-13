@@ -54,7 +54,7 @@ function sayGoodMorning() {
 
 // 43200000
 
-setInterval(sayGoodMorning(), 6000);
+// setInterval(sayGoodMorning(), 6000);
 
 // random response
 function responseFnc(num) {
