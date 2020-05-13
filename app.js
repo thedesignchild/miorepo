@@ -38,12 +38,12 @@ function sayGoodMorning() {
     currentDate = currentDate - 19800
     console.log(currentDate)
 
-    // app.client.chat.postMessage({
-    //     token: context.botToken,
-    //     channel: 'U01187SMWUW',
-    //     post_at: currentDate,
-    //     text: `test value`
-    // });
+    app.client.chat.postMessage({
+        token: process.env.SLACK_BOT_TOKEN,
+        channel: 'U01187SMWUW',
+        post_at: 1589346300,
+        text: `test value`
+    });
 
 
 }
