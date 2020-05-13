@@ -610,7 +610,7 @@ app.action('nudge_people', async({ ack, body, context }) => {
 
     // Acknowledge action request
     await ack();
-    console.log(context)
+
     const member1 = body.user.id;
     memberNumber = rndGenerator(0, 54)
     const member2 = searchMember(memberNumber)
