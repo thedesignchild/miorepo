@@ -40,21 +40,21 @@ function sayGoodMorning() {
     currentDate = currentDate - 19800
     console.log(currentDate)
 
-    for (i = 0; i < allUsers.length; i++) {
-        try {
-            app.client.chat.scheduleMessage({
-                token: process.env.SLACK_BOT_TOKEN,
-                channel: allUsers[i],
-                post_at: currentDate,
-                text: `Good morning <@${allUsers[i]}>! Let's do some amazing work today! 😸 but make sure to take breaks in between as well`
-            });
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    // for (i = 0; i < allUsers.length; i++) {
+    //     try {
+    //         app.client.chat.scheduleMessage({
+    //             token: process.env.SLACK_BOT_TOKEN,
+    //             channel: allUsers[i],
+    //             post_at: currentDate,
+    //             text: `Good morning <@${allUsers[i]}>! Let's do some amazing work today! 😸 but make sure to take breaks in between as well`
+    //         });
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 }
 // 86400000
-setInterval(function() { sayGoodMorning() }, 86400000);
+// setInterval(function() { sayGoodMorning() }, 86400000);
 
 // random response
 function responseFnc(num) {
