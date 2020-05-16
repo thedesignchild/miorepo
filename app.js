@@ -30,7 +30,7 @@ var cron = require('node-cron');
 cron.schedule('* 04 06 * * 7', () => {
     app.client.chat.postMessage({
         token: context.botToken,
-        channel: '#U01187SMWUW',
+        channel: 'U01187SMWUW',
         text: `*test message for cron*`
     });
 });
