@@ -27,9 +27,9 @@ const port = process.env.PORT || 3000;
 // FUNCTIONS
 
 var cron = require('node-cron');
-cron.schedule('* * * * * *', () => {
+cron.schedule('* 04 23 * * 6', () => {
     app.client.chat.postMessage({
-        token: context.botToken,
+        token: process.env.SLACK_BOT_TOKEN,
         channel: 'U01187SMWUW',
         text: `*test message for cron*`
     });
