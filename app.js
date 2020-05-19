@@ -1072,8 +1072,6 @@ app.action('call_everyone', async({ ack, body, context }) => {
             user: body.user.id
         });
 
-        googleAPI('new_feature_open', identify)
-
     } catch (error) {
         console.error(error);
     }
