@@ -26,15 +26,15 @@ const sheets = google.sheets({ version: 'v4', auth });
 const port = process.env.PORT || 3000;
 // FUNCTIONS
 
-var cron = require('node-cron');
-cron.schedule('* 30 0 * * *', () => {
-    app.client.chat.postMessage({
-        token: process.env.SLACK_BOT_TOKEN,
-        channel: 'U01187SMWUW',
-        text: `*test message for cron by richard*`
-    });
-    console.log('working');
-});
+// var cron = require('node-cron');
+// cron.schedule('* 30 0 * * *', () => {
+//     app.client.chat.postMessage({
+//         token: process.env.SLACK_BOT_TOKEN,
+//         channel: 'U01187SMWUW',
+//         text: `*test message for cron by richard*`
+//     });
+//     console.log('working');
+// });
 // function sayGoodMorning() {
 //     var timeline = new Date();
 //     //var allUsers = ['UD8UH97FE', 'UDBAA8X9U', 'U01187SMWUW', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03KX1HRL', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'U4Q9T7UMU', 'U7C962QCT', 'U8FG0MWAD', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UA2NYRY49', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGYP58B6H', 'UGU8YMWAF', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
@@ -1249,185 +1249,403 @@ app.message(async({ message, body, context }) => {
 // listener if the user has clicked on the home tab
 app.event('app_home_opened', async({ payload, context }) => {
     const userId = payload.user;
+    if (userId != 'U01187SMWUW') {
+        try {
+            // Call the views.publish method using the built-in WebClient
+            const result = await app.client.views.publish({
+                // The token you used to initialize your app is stored in the `context` object
+                token: context.botToken,
+                user_id: userId,
+                view: {
+                    "type": "home",
+                    "blocks": [{
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": `*Meow, <@${  userId  }> :smile_cat:*`
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "I'm @mio, inFeedo's workspace pet! I assist the People’s team in making the workspace engaging for hoomans and helping us all grow to our full potential. Balancing work and play is key for a healthy lifestyle, and I’m here to help! Just mention me along with a keyword like help, ideas, suggestions, or random and I will share an activity you can do to brighten up your day! \n\n To know more, click here: https://bit.ly/35ScQI5"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*New Suggestions and Ideas? 😻*"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "You can give *suggestions, feedback or ideas* and I'll pass them over to the People's team so they can help make the workspace more engaging. I proposed more toy mice 🐁"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "new_suggestion_activity",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "✍  Share Ideas",
+                                    "emoji": true
+                                },
+                                "value": "suggestions"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Watercooler Talks! 🐈*"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "I will randomly nudge people from across the workspace and encourage them to meet (of course remotely :computer:) for *coffee* :coffee:, *lunch* 🌮, or for a *random conversation* 😄"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "nudge_people",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "👉  Nudge Someone",
+                                    "emoji": true
+                                },
+                                "value": "people"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Free Time Fun 😺 *"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "Mention @mio in a channel or DM and I will suggest a random activity that you could do in your free time. You could also use keywords like *anime*, *books*, *joke*, *food* and many more to get specific suggestions. Meow! 😽"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "random_activity_event",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "🎉  Random Activity",
+                                    "emoji": true
+                                },
+                                "value": "random"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Feature Suggestion 🙀*"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "Suggest new features you would like to see built in @mio"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "kenshi_activity",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "🙌  Suggest New Feature",
+                                    "emoji": true
+                                },
+                                "value": "random"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Feature Suggestion 🙀*"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "Suggest new features you would like to see built in @mio"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "kenshi_activity",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "🙌  Suggest New Feature",
+                                    "emoji": true
+                                },
+                                "value": "random"
+                            }]
+                        }
+                    ]
+                }
+            });
 
-    try {
-        // Call the views.publish method using the built-in WebClient
-        const result = await app.client.views.publish({
-            // The token you used to initialize your app is stored in the `context` object
-            token: context.botToken,
-            user_id: userId,
-            view: {
-                "type": "home",
-                "blocks": [{
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": `*Meow, <@${  userId  }> :smile_cat:*`
-                        }
-                    },
-                    {
-                        "type": "context",
-                        "elements": [{
-                            "type": "mrkdwn",
-                            "text": "I'm @mio, inFeedo's workspace pet! I assist the People’s team in making the workspace engaging for hoomans and helping us all grow to our full potential. Balancing work and play is key for a healthy lifestyle, and I’m here to help! Just mention me along with a keyword like help, ideas, suggestions, or random and I will share an activity you can do to brighten up your day! \n\n To know more, click here: https://bit.ly/35ScQI5"
-                        }]
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": " "
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*New Suggestions and Ideas? 😻*"
-                        }
-                    },
-                    {
-                        "type": "context",
-                        "elements": [{
-                            "type": "mrkdwn",
-                            "text": "You can give *suggestions, feedback or ideas* and I'll pass them over to the People's team so they can help make the workspace more engaging. I proposed more toy mice 🐁"
-                        }]
-                    },
-                    {
-                        "type": "actions",
-                        "elements": [{
-                            "type": "button",
-                            "action_id": "new_suggestion_activity",
+            // console.log(result);
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        try {
+            // Call the views.publish method using the built-in WebClient
+            const result = await app.client.views.publish({
+                // The token you used to initialize your app is stored in the `context` object
+                token: context.botToken,
+                user_id: userId,
+                view: {
+                    "type": "home",
+                    "blocks": [{
+                            "type": "section",
                             "text": {
-                                "type": "plain_text",
-                                "text": "✍  Share Ideas",
-                                "emoji": true
-                            },
-                            "value": "suggestions"
-                        }]
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": " "
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Watercooler Talks! 🐈*"
-                        }
-                    },
-                    {
-                        "type": "context",
-                        "elements": [{
-                            "type": "mrkdwn",
-                            "text": "I will randomly nudge people from across the workspace and encourage them to meet (of course remotely :computer:) for *coffee* :coffee:, *lunch* 🌮, or for a *random conversation* 😄"
-                        }]
-                    },
-                    {
-                        "type": "actions",
-                        "elements": [{
-                            "type": "button",
-                            "action_id": "nudge_people",
+                                "type": "mrkdwn",
+                                "text": `*Meow, <@${  userId  }> :smile_cat:*`
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "I'm @mio, inFeedo's workspace pet! I assist the People’s team in making the workspace engaging for hoomans and helping us all grow to our full potential. Balancing work and play is key for a healthy lifestyle, and I’m here to help! Just mention me along with a keyword like help, ideas, suggestions, or random and I will share an activity you can do to brighten up your day! \n\n To know more, click here: https://bit.ly/35ScQI5"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
                             "text": {
-                                "type": "plain_text",
-                                "text": "👉  Nudge Someone",
-                                "emoji": true
-                            },
-                            "value": "people"
-                        }]
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": " "
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Free Time Fun 😺 *"
-                        }
-                    },
-                    {
-                        "type": "context",
-                        "elements": [{
-                            "type": "mrkdwn",
-                            "text": "Mention @mio in a channel or DM and I will suggest a random activity that you could do in your free time. You could also use keywords like *anime*, *books*, *joke*, *food* and many more to get specific suggestions. Meow! 😽"
-                        }]
-                    },
-                    {
-                        "type": "actions",
-                        "elements": [{
-                            "type": "button",
-                            "action_id": "random_activity_event",
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
                             "text": {
-                                "type": "plain_text",
-                                "text": "🎉  Random Activity",
-                                "emoji": true
-                            },
-                            "value": "random"
-                        }]
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": " "
-                        }
-                    },
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "*Feature Suggestion 🙀*"
-                        }
-                    },
-                    {
-                        "type": "context",
-                        "elements": [{
-                            "type": "mrkdwn",
-                            "text": "Suggest new features you would like to see built in @mio"
-                        }]
-                    },
-                    {
-                        "type": "actions",
-                        "elements": [{
-                            "type": "button",
-                            "action_id": "kenshi_activity",
+                                "type": "mrkdwn",
+                                "text": "*New Suggestions and Ideas? 😻*"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "You can give *suggestions, feedback or ideas* and I'll pass them over to the People's team so they can help make the workspace more engaging. I proposed more toy mice 🐁"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "new_suggestion_activity",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "✍  Share Ideas",
+                                    "emoji": true
+                                },
+                                "value": "suggestions"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
                             "text": {
-                                "type": "plain_text",
-                                "text": "🙌  Suggest New Feature",
-                                "emoji": true
-                            },
-                            "value": "random"
-                        }]
-                    }
-                ]
-            }
-        });
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Watercooler Talks! 🐈*"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "I will randomly nudge people from across the workspace and encourage them to meet (of course remotely :computer:) for *coffee* :coffee:, *lunch* 🌮, or for a *random conversation* 😄"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "nudge_people",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "👉  Nudge Someone",
+                                    "emoji": true
+                                },
+                                "value": "people"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Free Time Fun 😺 *"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "Mention @mio in a channel or DM and I will suggest a random activity that you could do in your free time. You could also use keywords like *anime*, *books*, *joke*, *food* and many more to get specific suggestions. Meow! 😽"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "random_activity_event",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "🎉  Random Activity",
+                                    "emoji": true
+                                },
+                                "value": "random"
+                            }]
+                        },
+                        {
+                            "type": "divider"
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": " "
+                            }
+                        },
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": "*Feature Suggestion 🙀*"
+                            }
+                        },
+                        {
+                            "type": "context",
+                            "elements": [{
+                                "type": "mrkdwn",
+                                "text": "Suggest new features you would like to see built in @mio"
+                            }]
+                        },
+                        {
+                            "type": "actions",
+                            "elements": [{
+                                "type": "button",
+                                "action_id": "kenshi_activity",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "🙌  Suggest New Feature",
+                                    "emoji": true
+                                },
+                                "value": "random"
+                            }]
+                        }
+                    ]
+                }
+            });
 
-        // console.log(result);
-    } catch (error) {
-        console.log(error)
+            // console.log(result);
+        } catch (error) {
+            console.log(error)
+        }
     }
+
 });
 
 // respond in channels where the app is mentioned
