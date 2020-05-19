@@ -571,10 +571,9 @@ app.view('view_everyone', async({ ack, view, context }) => {
     var allUsers = ['U01187SMWUW'];
     for (i = 0; i < allUsers.length; i++) {
         try {
-            app.client.chat.scheduleMessage({
+            app.client.chat.postMessage({
                 token: context.botToken,
                 channel: allUsers[i],
-                post_at: currentDate,
                 text: `Meow <@${allUsers[i]}>! ` + textValue
             });
         } catch (error) {
