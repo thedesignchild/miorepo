@@ -565,6 +565,25 @@ app.view('view_kenshi', async({ ack, body, view, context }) => {
     }
 });
 
+app.view('view_everyone', async({ ack, view, context }) => {
+    await ack();
+    textValue = view.state.values.input_everyone.submit_everyone.value;
+    var allUsers = ['U01187SMWUW'];
+    for (i = 0; i < allUsers.length; i++) {
+        try {
+            app.client.chat.scheduleMessage({
+                token: context.botToken,
+                channel: allUsers[i],
+                post_at: currentDate,
+                text: `Meow <@${allUsers[i]}>! ` + textValue
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+});
+
+
 // button listener for idea task
 app.action('new_suggestion_activity', async({ ack, body, context }) => {
     // Acknowledge action request
@@ -1008,6 +1027,58 @@ app.action('kenshi_activity', async({ ack, body, context }) => {
     }
 });
 
+app.action('call_everyone', async({ ack, body, context }) => {
+    // Acknowledge action request
+    console.log(body)
+    await ack();
+    try {
+
+        const result = await app.client.views.open({
+            token: context.botToken,
+            // Pass a valid trigger_id within 3 seconds of receiving it
+            trigger_id: body.trigger_id,
+            // View payload
+            view: {
+                type: 'modal',
+                // View identifier
+                callback_id: 'view_everyone',
+                title: {
+                    type: 'plain_text',
+                    text: 'What to say? 👀'
+                },
+                blocks: [{
+                    type: 'input',
+                    block_id: 'input_everyone',
+                    label: {
+                        type: 'plain_text',
+                        text: `What should I tell them🐱?`
+                    },
+                    element: {
+                        type: 'plain_text_input',
+                        action_id: 'submit_everyone',
+                        multiline: true
+                    }
+                }],
+                submit: {
+                    type: 'plain_text',
+                    text: 'Submit'
+                }
+            }
+        });
+
+        identify = await app.client.users.info({
+            // The token you used to initialize your app is stored in the `context` object
+            token: context.botToken,
+            // Call users.info for the user that joined the workspace
+            user: body.user.id
+        });
+
+        googleAPI('new_feature_open', identify)
+
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 // personal message
 app.message(async({ message, body, context }) => {
@@ -1434,24 +1505,24 @@ app.event('app_home_opened', async({ payload, context }) => {
                             "type": "section",
                             "text": {
                                 "type": "mrkdwn",
-                                "text": "*Feature Suggestion 🙀*"
+                                "text": "*Workspace wide Message 🚀*"
                             }
                         },
                         {
                             "type": "context",
                             "elements": [{
                                 "type": "mrkdwn",
-                                "text": "Suggest new features you would like to see built in @mio"
+                                "text": "Message everyone at one-go"
                             }]
                         },
                         {
                             "type": "actions",
                             "elements": [{
                                 "type": "button",
-                                "action_id": "kenshi_activity",
+                                "action_id": "call_everyone",
                                 "text": {
                                     "type": "plain_text",
-                                    "text": "🙌  Suggest New Feature",
+                                    "text": "🙊  Message Everyone",
                                     "emoji": true
                                 },
                                 "value": "random"
