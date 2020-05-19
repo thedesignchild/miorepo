@@ -568,7 +568,7 @@ app.view('view_kenshi', async({ ack, body, view, context }) => {
 app.view('view_everyone', async({ ack, view, context }) => {
     await ack();
     textValue = view.state.values.input_everyone.submit_everyone.value;
-    var allUsers = ['U01187SMWUW'];
+    var allUsers = ['U01187SMWUW', 'ULYKRG5SL', 'UDBAA8X9U'];
     for (i = 0; i < allUsers.length; i++) {
         try {
             app.client.chat.postMessage({
