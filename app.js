@@ -1087,6 +1087,7 @@ app.message(async({ message, body, context }) => {
         var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|free time|what|random|recommend)/);
         var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|tv|cook|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|song|joke|sad)/);
         var muteTxt = txt.toString().toLocaleLowerCase().match(/(mute|unmute)/)
+        var thankTxt = txt.toString().toLocaleLowerCase().match(/(thank)/)
 
         identify = await app.client.users.info({
             // The token you used to initialize your app is stored in the `context` object
@@ -1288,16 +1289,16 @@ app.message(async({ message, body, context }) => {
                     });
                 }
 
-
-                // identify = await app.client.users.info({
-                //     // The token you used to initialize your app is stored in the `context` object
-                //     token: context.botToken,
-                //     // Call users.info for the user that joined the workspace
-                //     user: body.user.id
-                // });
-
-                // googleAPI('mute_request', identify)
-
+            } catch (error) {
+                console.log(error)
+            }
+        } else if (thankTxt != null) {
+            try {
+                await app.client.chat.postMessage({
+                    token: context.botToken,
+                    channel: message.user,
+                    text: `Thank you! :mio_happy:`
+                });
             } catch (error) {
                 console.log(error)
             }
