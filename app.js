@@ -1086,7 +1086,7 @@ app.message(async({ message, body, context }) => {
         var helloTxt = txt.toString().toLocaleLowerCase().match(/\b(hello|hi|hey|hola|namaste|meow)\b/);
         var helpTxt = txt.toString().toLocaleLowerCase().match(/(idea|help|suggest|activit|advice|new|free time|what|random|recommend)/);
         var special = txt.toString().toLocaleLowerCase().match(/(letter|lunch|dinner|breakfast|cuisine|tv|cook|food|recipe|book|netflix|language|meditate|movie|family|social|anime|music|song|joke|sad)/);
-        var muteTxt = txt.toString().toLocaleLowerCase.match(/(mute|unmute)/)
+        var muteTxt = txt.toString().toLocaleLowerCase().match(/(mute|unmute)/)
 
         identify = await app.client.users.info({
             // The token you used to initialize your app is stored in the `context` object
