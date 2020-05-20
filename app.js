@@ -1273,6 +1273,7 @@ app.message(async({ message, body, context }) => {
                     channel: '#richard-box_2',
                     text: `*<@${message.user}> has asked for* \n` + txt
                 });
+                console.log(muteTxt)
 
                 if (muteTxt == 'mute') {
                     await app.client.chat.postMessage({
