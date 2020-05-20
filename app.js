@@ -1271,7 +1271,7 @@ app.message(async({ message, body, context }) => {
                 await app.client.chat.postMessage({
                     token: context.botToken,
                     channel: '#richard-box_2',
-                    text: `*<@${message.user}> has asked for* \n` + muteTxt[0] + `\n the mentioned reason is ` + txt
+                    text: `*<@${message.user}> has asked for* \n` + muteTxt[0] + `\n *the mentioned reason is* ` + txt
                 });
 
                 if (muteTxt[0] == 'mute') {
