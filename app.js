@@ -1271,7 +1271,7 @@ app.message(async({ message, body, context }) => {
                 await app.client.chat.postMessage({
                     token: context.botToken,
                     channel: '#richard-box_2',
-                    text: `*<@${body.user.id}> has asked for* \n` + muteTxt
+                    text: `*<@${message.user}> has asked for* \n` + muteTxt
                 });
 
                 // identify = await app.client.users.info({
