@@ -1297,7 +1297,7 @@ app.message(async({ message, body, context }) => {
                 await app.client.chat.postMessage({
                     token: context.botToken,
                     channel: message.user,
-                    text: `Thank you! :mio_happy:`
+                    text: `Welcome! 😸`
                 });
             } catch (error) {
                 console.log(error)
