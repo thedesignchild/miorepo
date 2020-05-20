@@ -1274,6 +1274,21 @@ app.message(async({ message, body, context }) => {
                     text: `*<@${message.user}> has asked for* \n` + txt
                 });
 
+                if (muteTxt == 'mute') {
+                    await app.client.chat.postMessage({
+                        token: context.botToken,
+                        channel: message.user,
+                        text: `Your notifications will be muted in 10 mins 😿`
+                    });
+                } else {
+                    await app.client.chat.postMessage({
+                        token: context.botToken,
+                        channel: message.user,
+                        text: `Welcome back. Your notifications will be active in 10 mins 😺`
+                    });
+                }
+
+
                 // identify = await app.client.users.info({
                 //     // The token you used to initialize your app is stored in the `context` object
                 //     token: context.botToken,
