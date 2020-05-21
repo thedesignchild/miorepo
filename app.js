@@ -1281,12 +1281,17 @@ app.message(async({ message, body, context }) => {
                         channel: message.user,
                         text: `Your notifications will be muted in 10 mins 😿`
                     });
+
+                    googleAPI('direct_muted', identify)
+
                 } else {
                     await app.client.chat.postMessage({
                         token: context.botToken,
                         channel: message.user,
                         text: `Welcome back. Your notifications will be active in 10 mins 😺`
                     });
+
+                    googleAPI('direct_unmuted', identify)
                 }
 
             } catch (error) {
