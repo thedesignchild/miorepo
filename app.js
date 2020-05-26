@@ -338,7 +338,7 @@ function animeFnc() {
 
 function searchMember(userNumber) {
     console.log(userNumber);
-    var allUsers = ['UD8UH97FE', 'UJVM0KHM1', 'UJVM4AQTU', 'U014R41CZA4', 'U014R41DEM6', 'UDBAA8X9U', 'U01187SMWUW', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
+    var allUsers = ['UD8UH97FE', 'UJVM0KHM1', 'UJVM4AQTU', 'U014R41CZA4', 'U014R41DEM6', 'UDBAA8X9U', 'U01187SMWUW', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
     return allUsers[userNumber];
 }
 
@@ -568,7 +568,7 @@ app.view('view_kenshi', async({ ack, body, view, context }) => {
 app.view('view_everyone', async({ ack, view, context }) => {
     await ack();
     textValue = view.state.values.input_everyone.submit_everyone.value;
-    var allUsers = ['UD8UH97FE', 'UJVM0KHM1', 'UJVM4AQTU', 'U014R41DEM6', 'U014R41CZA4', 'UDBAA8X9U', 'U01187SMWUW', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'ULQH9K64T', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
+    var allUsers = ['UD8UH97FE', 'UJVM0KHM1', 'UJVM4AQTU', 'U014R41DEM6', 'U014R41CZA4', 'UDBAA8X9U', 'U01187SMWUW', 'UA3DDHCLD', 'ULYKRG5SL', 'UBD13C8S0', 'UH8DGFEH2', 'U03K4SV53', 'U0B038UMV', 'U4Z8WFNNM', 'UKFPU3R8R', 'U0116AERAFJ', 'URB39B4K1', 'US6V314BS', 'UBCGR6EKS', 'UC2EYD316', 'UE6315MME', 'UEBGP6DS8', 'UEMS5JCK1', 'UF5MAS895', 'UFJG2FUHH', 'UG2HVLKK2', 'UGN28143C', 'UHB8DGBNW', 'UHXE3TWLT', 'U0EGR6Z6W', 'UK8UFJG31', 'UKP3363SS', 'UK9F62YHZ', 'ULAJCN0KG', 'ULP99K423', 'ULF2Y1F4H', 'ULN9MA3DX', 'UM0QA9NR4', 'UMJJ6APML', 'UBA4DB7CZ', 'UNZ7KHRJA', 'UQG4UANS0', 'UQG44L72M', 'URBDJA430', 'UQVJ1QNLR', 'UM1UZEE85', 'UT4FY15MY', 'UT5RBQC83', 'UUFE0R2SH', 'U010WAL1J81', 'UU2LKBSH0'];
     //var allUsers = ['U01187SMWUW', 'ULYKRG5SL', 'UDBAA8X9U'];
     for (i = 0; i < allUsers.length; i++) {
         try {
@@ -646,11 +646,11 @@ app.action('nudge_people', async({ ack, body, context }) => {
     await ack();
 
     const member1 = body.user.id;
-    memberNumber = rndGenerator(0, 51)
+    memberNumber = rndGenerator(0, 50)
     const member2 = searchMember(memberNumber)
 
     while (member1 == member2) {
-        memberNumber = rndGenerator(0, 51)
+        memberNumber = rndGenerator(0, 50)
         member2 = searchMember(memberNumber)
     }
 
@@ -777,11 +777,11 @@ app.action('accept_chat_action', (async({ ack, body, context }) => {
 app.action('retry_chat_action', (async({ ack, body, context }) => {
     await ack();
     const member1 = body.user.id;
-    memberNumber = rndGenerator(0, 51)
+    memberNumber = rndGenerator(0, 50)
     const member2 = searchMember(memberNumber)
 
     while (member1 == member2) {
-        memberNumber = rndGenerator(0, 51)
+        memberNumber = rndGenerator(0, 50)
         member2 = searchMember(memberNumber)
     }
     sorterArray = [member1, member2]
