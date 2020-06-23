@@ -1385,44 +1385,7 @@ app.event('app_home_opened', async({ payload, context }) => {
                         },
                         {
                             "type": "divider"
-                        },
-                        {
-                            "type": "section",
-                            "text": {
-                                "type": "mrkdwn",
-                                "text": " "
-                            }
-                        },
-                        {
-                            "type": "section",
-                            "text": {
-                                "type": "mrkdwn",
-                                "text": "*New Suggestions and Ideas? 😻*"
-                            }
-                        },
-                        {
-                            "type": "context",
-                            "elements": [{
-                                "type": "mrkdwn",
-                                "text": "You can give *suggestions, feedback or ideas* and I'll pass them over to the People's team so they can help make the workspace more engaging. I proposed more toy mice 🐁"
-                            }]
-                        },
-                        {
-                            "type": "actions",
-                            "elements": [{
-                                "type": "button",
-                                "action_id": "new_suggestion_activity",
-                                "text": {
-                                    "type": "plain_text",
-                                    "text": "✍  Share Ideas",
-                                    "emoji": true
-                                },
-                                "value": "suggestions"
-                            }]
-                        },
-                        {
-                            "type": "divider"
-                        },
+                        }, ,
                         {
                             "type": "section",
                             "text": {
