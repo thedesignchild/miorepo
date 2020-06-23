@@ -1385,7 +1385,7 @@ app.event('app_home_opened', async({ payload, context }) => {
                         },
                         {
                             "type": "divider"
-                        }, ,
+                        },
                         {
                             "type": "section",
                             "text": {
