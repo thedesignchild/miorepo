@@ -1360,7 +1360,7 @@ app.message(async({ message, body, context }) => {
 // listener if the user has clicked on the home tab
 app.event('app_home_opened', async({ payload, context }) => {
     const userId = payload.user;
-    if (userId == 'U01187SMWUW') {
+    if (userId == 'U01187SMWUW' || userId == 'UD8UH97FE' || userID == 'UEBGP6DS8') {
         try {
             // Call the views.publish method using the built-in WebClient
             const result = await app.client.views.publish({
